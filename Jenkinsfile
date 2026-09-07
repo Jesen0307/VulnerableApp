@@ -12,10 +12,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    apt-get update
-                    apt-get install -y python3 python3-pip python3-venv curl docker.io openjdk-17-jdk
-                    systemctl start docker
-                    pip3 install semgrep --break-system-packages || sudo pip3 install semgrep
+                    sudo apt-get update
+                    sudo apt-get install -y python3 python3-pip python3-venv curl docker.io default-jdk
+                    sudo systemctl start docker
+                    sudo pip3 install semgrep --break-system-packages || sudo pip3 install semgrep
 		    
                 '''
             }
