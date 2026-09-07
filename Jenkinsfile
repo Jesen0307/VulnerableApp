@@ -13,16 +13,18 @@ pipeline {
             steps {
                 sh '''
                     sudo apt-get update
-                    sudo apt-get install -y python3 python3-pip python3-venv curl docker.io openjdk-17-jdk
+                    sudo apt-get install -y python3 python3-pip python3-venv curl docker.io default-jdk
+
+                    if [ ! -d "/usr/lib/jvm/java-17-temurin" ]; then
+                        sudo mkdir -p /usr/lib/jvm/java-17-temurin
+                        curl -sL "https://api.adoptium.net/v3/binary/latest/17/ga/linux/x64/jdk/hotspot/normal/eclipse" | sudo tar -xz -C /usr/lib/jvm/java-17-temurin --strip-components=1
+                    fi
+
                     sudo pip3 install semgrep --break-system-packages || sudo pip3 install semgrep
-		    
                 '''
             }
         }
 
-        // This is a Gradle + Java project. SonarQube's Java analyzer requires
-        // compiled class files (sonar.java.binaries), so we must build the
-        // code BEFORE running the SAST analysis.
         stage('Build (Compile Java)') {
             steps {
                 sh 'chmod +x gradlew'
@@ -35,7 +37,6 @@ pipeline {
                 script {
                     sh 'mkdir -p $REPORTS_DIR'
 
-                    // Run Semgrep and SonarQube scans in parallel
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
@@ -43,8 +44,6 @@ pipeline {
                         },
                         'SonarQube Analysis': {
                             sh 'chmod +x scripts/sonarqube-scan.sh'
-                            // Compiled classes are in build/classes/java/main, which
-                            // the script auto-detects.
                             sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
                         }
                     )
