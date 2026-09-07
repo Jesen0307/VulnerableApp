@@ -14,7 +14,6 @@ pipeline {
                 sh '''
                     sudo apt-get update
                     sudo apt-get install -y python3 python3-pip python3-venv curl docker.io default-jdk
-                    sudo service docker start
                     sudo pip3 install semgrep --break-system-packages || sudo pip3 install semgrep
 		    
                 '''
