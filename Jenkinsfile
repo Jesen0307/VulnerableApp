@@ -31,7 +31,7 @@ pipeline {
                         sudo mkdir -p /opt/sonar-scanner
                         curl -fsSL "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux-x64.zip" -o /tmp/sonar-scanner.zip
                         sudo unzip -q /tmp/sonar-scanner.zip -d /tmp/sonar-scanner-install
-                        sudo cp -r /tmp/sonar-scanner-install/sonar-scanner-*/ /opt/sonar-scanner/
+                        sudo cp -r /tmp/sonar-scanner-install/sonar-scanner-*/. /opt/sonar-scanner/
                         sudo chmod -R +x /opt/sonar-scanner/bin /opt/sonar-scanner/jre/bin
                         rm -rf /tmp/sonar-scanner.zip /tmp/sonar-scanner-install
                     fi
