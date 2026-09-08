@@ -7,7 +7,7 @@ pipeline {
         // so SonarQube is reachable by its Docker DNS name (stable, no hardcoded IP).
         SONAR_HOST_URL = 'http://sonarqube:9000'
         PATH = "/opt/sonar-scanner/bin:${env.PATH}"
-        SONAR_TOKEN = 'sqa_c18b9398b7904f6dce239a5d4902c0b39ef776d0'
+        SONAR_TOKEN = 'squ_5266179a17cefd7714fad4ff48176e3c9e5b0c76'
         SONAR_PROJECT_KEY = 'VulnerableApp'
     }
 
