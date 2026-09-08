@@ -104,8 +104,9 @@ def parse_sonarqube(data) -> list[dict]:
             items.append({
                 "tool": "SonarQube",
                 "file_path": _normalize_path(issue.get("component", issue.get("file", ""))),
-                "line_number": issue.get("line",
-                                         issue.get("textRange", {}).get("startLine", 0)),
+                "line_number": issue.get("line")
+                                         or (issue.get("textRange") or {}).get("startLine")
+                                         or 0,
                 "severity": issue.get("severity",
                                       issue.get("impacts", [{}])[0].get("severity", "UNKNOWN")),
                 "rule_id": issue.get("rule", issue.get("key", "")),
@@ -118,8 +119,9 @@ def parse_sonarqube(data) -> list[dict]:
             items.append({
                 "tool": "SonarQube",
                 "file_path": _normalize_path(hs.get("component", "")),
-                "line_number": hs.get("line",
-                                      hs.get("textRange", {}).get("startLine", 0)),
+"line_number": hs.get("line")
+                                       or (hs.get("textRange") or {}).get("startLine")
+                                       or 0,
                 "severity": hs.get("vulnerabilityProbability", "MEDIUM").upper(),
                 "rule_id": hs.get("ruleKey", ""),
                 "message": hs.get("message", ""),
@@ -152,7 +154,7 @@ def parse_semgrep(data) -> list[dict]:
         out.append({
             "tool": "Semgrep",
             "file_path": r.get("path", ""),
-            "line_number": r.get("start", {}).get("line", 0),
+            "line_number": (r.get("start") or {}).get("line") or 0,
             "severity": r.get("extra", {}).get("severity", "UNKNOWN"),
             "rule_id": r.get("check_id", ""),
             "message": r.get("extra", {}).get("message", ""),
