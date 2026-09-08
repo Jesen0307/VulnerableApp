@@ -29,9 +29,14 @@ repositories {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "SasanLabs_VulnerableApp"
-        property "sonar.organization", "sasanlabs"
-        property "sonar.host.url", "https://sonarcloud.io"
+        // Environment-overridable so the same repo can target SonarCloud
+        // (default) or a self-hosted SonarQube (e.g. Jenkins sets SONAR_HOST_URL
+        // / SONAR_TOKEN / SONAR_PROJECT_KEY). Example override:
+        //   ./gradlew sonarqube -Dsonar.host.url=http://172.17.0.1:9000 \
+        //     -Dsonar.token=$SONAR_TOKEN
+        property "sonar.host.url", System.getenv("SONAR_HOST_URL") ?: "https://sonarcloud.io"
+        property "sonar.organization", System.getenv("SONAR_ORGANIZATION") ?: "sasanlabs"
+        property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY") ?: "SasanLabs_VulnerableApp"
         property 'sonar.java.source', '17'
         property 'sonar.java.target', '17'
     }

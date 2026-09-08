@@ -5,6 +5,11 @@ set -euo pipefail
 # Usage: ./sonarqube-scan.sh <workspace_root> <project_key> <host_url> <token> [output_dir] [java_binaries]
 #   java_binaries = relative path to compiled classes (e.g. target/classes) for
 #                   the SonarQube Java analyzer. Optional.
+#
+# NOTE: HOST_URL is resolved from OUTSIDE the docker container (where this script
+# runs). Use a host that this runner can actually reach (e.g. the host's IP or a
+# DNS name), NOT 'localhost', when the scanner is invoked from inside a container
+# such as Jenkins.
 
 WORKSPACE_ROOT="${1:-.}"
 PROJECT_KEY="${2:-}"
@@ -12,35 +17,38 @@ HOST_URL="${3:-http://localhost:9000}"
 TOKEN="${4:-}"
 OUTPUT_DIR="${5:-$WORKSPACE_ROOT}"
 JAVA_BINARIES="${6:-}"
-TIMEOUT=600  # 10 minutes for analysis submission
+SCAN_TIMEOUT=600  # 10 minutes for the analysis submission (upload)
+POLL_TIMEOUT=900  # 15 minutes to wait for server-side CE completion + export
 
 if [ -z "$PROJECT_KEY" ] || [ -z "$TOKEN" ]; then
     echo "[sonarqube-scan] ERROR: project key and token are required" >&2
-    echo '{"issues": [], "hotspots": []}' > "$OUTPUT_DIR/sonar_raw.json"
-    exit 0
+    exit 2
 fi
 
 cd "$WORKSPACE_ROOT"
+mkdir -p "$OUTPUT_DIR"
 
 echo "[sonarqube-scan] Starting SonarQube scan for project '$PROJECT_KEY'"
 echo "[sonarqube-scan] Host: $HOST_URL"
 
-# Build the docker arg list
+# Build the docker arg list. The scanner container shares the runner's network so
+# it can reach HOST_URL. The project source + compiled classes are mounted at
+# /usr/src (the image's WORKDIR), so the relative paths below resolve inside it.
 SCAN_ARGS=(
     --rm
     --network="host"
     -v "$(pwd):/usr/src"
     sonarsource/sonar-scanner-cli
     -Dsonar.projectKey="$PROJECT_KEY"
-    -Dsonar.sources=.
+    -Dsonar.projectName="$PROJECT_KEY"
+    -Dsonar.sources=src
     -Dsonar.host.url="$HOST_URL"
     -Dsonar.token="$TOKEN"
 )
 
-# Prefer sonar.java.binaries when provided; otherwise auto-detect the Java
-# binary output directory produced by Maven or Gradle. SonarQube's Java
-# analyzer REQUIRES compiled classes to run a proper SAST analysis, so the
-# code must be built before invoking this script.
+# Prefer sonar.java.binaries when provided; otherwise auto-detect the Java binary
+# output produced by Maven or Gradle. Also resolve the compile classpath so the
+# Java analyzer does not degrade (WARNING about missing libraries).
 BINARIES="$JAVA_BINARIES"
 if [ -z "$BINARIES" ]; then
     if [ -d "$WORKSPACE_ROOT/target/classes" ]; then
@@ -56,42 +64,41 @@ else
     echo "[sonarqube-scan] WARNING: no compiled Java classes found. SonarQube Java analysis requires the project to be built first (e.g. ./gradlew classes)." >&2
 fi
 
-# Run sonar-scanner via Docker
+# Provide a compile classpath so Java analysis is precise instead of degrading to
+# "unresolved imports". Best-effort: if we cannot build one, warn but continue.
+LIB_CLASSPATH=""
+if [ -f "$WORKSPACE_ROOT/build/runtimeClasspath.txt" ]; then
+    LIB_CLASSPATH="build/runtimeClasspath.txt"
+elif [ -d "$WORKSPACE_ROOT/build" ]; then
+    LIB_CLASSPATH=$(find "$WORKSPACE_ROOT/build" -name '*.jar' 2>/dev/null | tr '\n' ':')
+fi
+if [ -n "${LIB_CLASSPATH:-}" ]; then
+    SCAN_ARGS+=(-Dsonar.java.libraries="$LIB_CLASSPATH")
+else
+    echo "[sonarqube-scan] WARNING: could not build a java classpath; Java analysis may be less precise." >&2
+fi
+
+# Run sonar-scanner via Docker. Any real failure here is fatal and visible.
 SCAN_START=$(date +%s)
 
-if timeout "$TIMEOUT" docker run "${SCAN_ARGS[@]}" > /tmp/sonar_scanner_stdout.log 2>&1; then
+if timeout "$SCAN_TIMEOUT" docker run "${SCAN_ARGS[@]}" > "$OUTPUT_DIR/sonar_scanner_stdout.log" 2>&1; then
     echo "[sonarqube-scan] Analysis submitted successfully"
 else
     EXIT_CODE=$?
     echo "[sonarqube-scan] Scan failed or timed out (exit code: $EXIT_CODE)" >&2
-    cat /tmp/sonar_scanner_stdout.log >&2
-    echo '{"issues": [], "hotspots": []}' > "$OUTPUT_DIR/sonar_raw.json"
-    exit 0  # Don't fail pipeline
+    cat "$OUTPUT_DIR/sonar_scanner_stdout.log" >&2
+    exit 1
 fi
 
 echo "[sonarqube-scan] Analysis submitted in $(( $(date +%s) - SCAN_START ))s. Waiting for server-side completion..."
 
-# Wait for the SonarQube analysis to finish (CE task) before returning.
-# sonar-scanner CLI returns once the report is uploaded, but server-side
-# analysis may still be running. Query the Compute Engine for completion.
-# Use the same token against the API.
-POLL_TIMEOUT=600
+# Wait for the SonarQube analysis to finish (CE task) so we only export real
+# findings. Retry past transient "no task yet" states instead of bailing out.
 POLL_START=$(date +%s)
+TASK_SUCCEEDED=0
 
 while true; do
-    # Try to find a running/completed task for this project
-    COMPONENT_QUERY="$HOST_URL/api/components/show?component=$PROJECT_KEY"
-    COMPONENT_JSON=$(curl -s -u "$TOKEN:" "$COMPONENT_QUERY" 2>/dev/null || echo '{}')
-    COMPONENT_ID=$(echo "$COMPONENT_JSON" | python3 -c "
-import json,sys
-try:
-    d=json.load(sys.stdin)
-    print(d.get('component',{}).get('key',''))
-except Exception:
-    print('')
-" 2>/dev/null || echo '')
-
-    TASK_JSON=$(curl -s -u "$TOKEN:" "$HOST_URL/api/ce/component?component=$PROJECT_KEY" 2>/dev/null || echo '{}')
+    TASK_JSON=$(curl -sf -u "$TOKEN:" "$HOST_URL/api/ce/component?component=$PROJECT_KEY" 2>/dev/null || echo '{}')
     TASK_STATUS=$(echo "$TASK_JSON" | python3 -c "
 import json,sys
 try:
@@ -108,41 +115,105 @@ except Exception:
     case "$TASK_STATUS" in
         SUCCESS)
             echo "[sonarqube-scan] Analysis completed successfully (task: SUCCESS)"
-            echo "SonarQube scan completed OK" > "$OUTPUT_DIR/sonar_scan.log"
+            TASK_SUCCEEDED=1
             break
             ;;
         FAILED|CANCELED)
             echo "[sonarqube-scan] Analysis task $TASK_STATUS" >&2
-            echo "SonarQube scan $TASK_STATUS" > "$OUTPUT_DIR/sonar_scan.log"
-            break
+            exit 1
             ;;
-        NO_TASK)
-            echo "[sonarqube-scan] No task found yet for '$PROJECT_KEY'"
-            echo "SonarQube scan completed (no task found; may need re-scan)" > "$OUTPUT_DIR/sonar_scan.log"
-            break
-            ;;
-        PENDING|IN_PROGRESS)
+        PENDING|IN_PROGRESS|NO_TASK)
             echo "[sonarqube-scan] Analysis in progress ($TASK_STATUS)..."
             ;;
         *)
             echo "[sonarqube-scan] Unknown task status: $TASK_STATUS" >&2
-            break
+            exit 1
             ;;
     esac
 
     if [ $(( $(date +%s) - POLL_START )) -ge "$POLL_TIMEOUT" ]; then
         echo "[sonarqube-scan] Polling timed out after ${POLL_TIMEOUT}s" >&2
-        echo "SonarQube scan polling timed out" > "$OUTPUT_DIR/sonar_scan.log"
-        break
+        exit 1
     fi
 
-    sleep 5
+    sleep 10
 done
 
-# Create placeholder for raw collection; the MCP phase populates real data.
-# The processor expects "issues" and "hotspots" keys.
-if [ ! -f "$OUTPUT_DIR/sonar_raw.json" ]; then
-    echo '{"issues": [], "hotspots": []}' > "$OUTPUT_DIR/sonar_raw.json"
+# Export real findings so the downstream processor gets actual data instead of
+# an empty placeholder. Issues are the priority; hotspots are best-effort (the
+# scan token may not have the privilege to list them).
+if [ "$TASK_SUCCEEDED" = "1" ]; then
+    echo "[sonarqube-scan] Fetching findings from SonarQube..."
+    python3 - "$HOST_URL" "$TOKEN" "$PROJECT_KEY" "$OUTPUT_DIR/sonar_raw.json" <<'PYEOF'
+import json
+import sys
+import urllib.request
+
+host, token, project_key, out_path = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+page_size = 500
+result = {"issues": [], "hotspots": []}
+
+
+def api_request(path):
+    url = f"{host}{path}"
+    req = urllib.request.Request(url)
+    req.add_header("Authorization", "Basic " + __import__("base64").b64encode(
+        f"{token}:".encode()).decode())
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        return json.load(resp)
+
+
+# Issues (paged)
+page = 1
+while True:
+    try:
+        data = api_request(
+            f"/api/issues/search?componentKeys={project_key}&ps={page_size}&p={page}")
+    except Exception as e:
+        print(f"[sonarqube-scan] WARNING: could not fetch issues: {e}", file=sys.stderr)
+        break
+    issues = data.get("issues", [])
+    for i in issues:
+        result["issues"].append({
+            "key": i.get("key"),
+            "rule": i.get("rule"),
+            "component": i.get("component"),
+            "severity": i.get("severity"),
+            "message": i.get("message"),
+            "line": i.get("line"),
+            "textRange": i.get("textRange"),
+        })
+    total = data.get("total", 0)
+    if not issues or page * page_size >= total:
+        break
+    page += 1
+
+# Hotspots (best effort)
+try:
+    data = api_request(
+        f"/api/hotspots/search?projectKey={project_key}&ps={page_size}")
+except Exception as e:
+    print(f"[sonarqube-scan] WARNING: could not fetch hotspots (may lack privilege): {e}",
+          file=sys.stderr)
+else:
+    for h in data.get("hotspots", []):
+        result["hotspots"].append({
+            "key": h.get("key"),
+            "ruleKey": h.get("ruleKey"),
+            "component": h.get("component"),
+            "vulnerabilityProbability": h.get("vulnerabilityProbability"),
+            "message": h.get("message"),
+            "line": h.get("line"),
+        })
+
+with open(out_path, "w") as f:
+    json.dump(result, f)
+print(f"[sonarqube-scan] Exported {len(result['issues'])} issues and "
+      f"{len(result['hotspots'])} hotspots to {out_path}")
+PYEOF
+else
+    echo "[sonarqube-scan] Analysis did not complete; no findings exported." >&2
+    exit 1
 fi
 
 echo "[sonarqube-scan] Done."
