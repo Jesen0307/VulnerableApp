@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         REPORTS_DIR = 'security-reports'
-        // Docker host gateway: reachable from inside the Jenkins container.
-        // 'localhost' would only reach SonarQube from the host, not from Jenkins.
-        SONAR_HOST_URL = 'http://172.17.0.1:9000'
+        // Jenkins container is attached to the SonarQube 'sonarnet' network,
+        // so SonarQube is reachable by its Docker DNS name (stable, no hardcoded IP).
+        SONAR_HOST_URL = 'http://sonarqube:9000'
         PATH = "/opt/sonar-scanner/bin:${env.PATH}"
         SONAR_TOKEN = 'sqa_c18b9398b7904f6dce239a5d4902c0b39ef776d0'
         SONAR_PROJECT_KEY = 'VulnerableApp'

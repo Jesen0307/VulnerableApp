@@ -93,25 +93,37 @@ fi
 
 echo "[sonarqube-scan] Analysis submitted in $(( $(date +%s) - SCAN_START ))s. Waiting for server-side completion..."
 
-# Wait for the SonarQube analysis to finish (CE task) so we only export real
-# findings. Retry past transient "no task yet" states instead of bailing out.
+# The scanner logs the Compute Engine task id on the "More about the report
+# processing at <host>/api/ce/task?id=<uuid>" line. Poll that task endpoint:
+# it works with a scan-only token, whereas /api/ce/component requires project
+# Browse permission and returns 403 for scan tokens.
+TASK_ID=""
+if [ -f "$OUTPUT_DIR/sonar_scanner_stdout.log" ]; then
+    TASK_ID=$(grep -oE 'api/ce/task\?id=[a-fA-F0-9-]+' "$OUTPUT_DIR/sonar_scanner_stdout.log" \
+              | head -1 | sed 's/.*id=//' || true)
+fi
+if [ -n "$TASK_ID" ]; then
+    echo "[sonarqube-scan] Polling CE task: $TASK_ID"
+else
+    echo "[sonarqube-scan] WARNING: could not find CE task id in scanner log; status cannot be confirmed." >&2
+fi
+
 POLL_START=$(date +%s)
 TASK_SUCCEEDED=0
 
 while true; do
-    TASK_JSON=$(curl -sf -u "$TOKEN:" "$HOST_URL/api/ce/component?component=$PROJECT_KEY" 2>/dev/null || echo '{}')
-    TASK_STATUS=$(echo "$TASK_JSON" | python3 -c "
+    if [ -n "$TASK_ID" ]; then
+        TASK_JSON=$(curl -sf -u "$TOKEN:" "$HOST_URL/api/ce/task?id=$TASK_ID" 2>/dev/null || echo '{}')
+        TASK_STATUS=$(echo "$TASK_JSON" | python3 -c "
 import json,sys
 try:
-    d=json.load(sys.stdin)
-    tasks=d.get('tasks',[])
-    if not tasks:
-        print('NO_TASK')
-    else:
-        print(tasks[0].get('status','NO_TASK'))
+    print(json.load(sys.stdin).get('task',{}).get('status','UNKNOWN'))
 except Exception:
-    print('NO_TASK')
-" 2>/dev/null || echo 'NO_TASK')
+    print('UNKNOWN')
+" 2>/dev/null || echo 'UNKNOWN')
+    else
+        TASK_STATUS='NO_TASK'
+    fi
 
     case "$TASK_STATUS" in
         SUCCESS)
