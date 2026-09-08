@@ -75,7 +75,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-            archiveArtifacts artifacts: "$REPORTS_DIR/*.json, $REPORTS_DIR/*.log", allowEmptyArchive: true
+            archiveArtifacts artifacts: "${env.REPORTS_DIR}/*.json, ${env.REPORTS_DIR}/*.log", allowEmptyArchive: true
         }
     }
 }
