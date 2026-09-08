@@ -42,7 +42,7 @@ pipeline {
         stage('Build (Compile Java)') {
             steps {
                 sh 'chmod +x gradlew'
-                sh './gradlew classes --no-daemon'
+                sh './gradlew classes printRuntimeClasspath --no-daemon'
             }
         }
 

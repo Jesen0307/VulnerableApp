@@ -195,3 +195,15 @@ tasks.named("jacocoTestReport") {
         xml.outputLocation.set(layout.buildDirectory.file("reports/jacoco.xml"))
     }
 }
+
+// Write the runtime classpath (external jars only) to a file the SonarQube
+// scan script reads, so Java analysis is precise instead of degrading to
+// "unresolved imports". Run as part of the build: ./gradlew classes printRuntimeClasspath
+tasks.register('printRuntimeClasspath') {
+    group = 'Verification'
+    description = 'Writes the runtime classpath to build/runtimeClasspath.txt for SonarQube'
+    doLast {
+        def libraries = sourceSets.main.runtimeClasspath.filter { it.name.endsWith('.jar') }
+        file('build/runtimeClasspath.txt').text = libraries.asPath
+    }
+}
