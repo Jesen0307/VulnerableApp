@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         REPORTS_DIR = 'security-reports'
-        // Docker host gateway: reachable from BOTH the Jenkins container and the
-        // sonar-scanner container (--network=host). 'localhost' would only reach
-        // SonarQube from the host, not from inside the Jenkins container.
+        // Docker host gateway: reachable from inside the Jenkins container.
+        // 'localhost' would only reach SonarQube from the host, not from Jenkins.
         SONAR_HOST_URL = 'http://172.17.0.1:9000'
+        PATH = "/opt/sonar-scanner/bin:${env.PATH}"
         SONAR_TOKEN = 'sqa_c18b9398b7904f6dce239a5d4902c0b39ef776d0'
         SONAR_PROJECT_KEY = 'VulnerableApp'
     }
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh '''
                     sudo apt-get update
-                    sudo apt-get install -y python3 python3-pip python3-venv curl docker.io default-jdk
+                    sudo apt-get install -y python3 python3-pip python3-venv curl unzip docker.io default-jdk
 
                     if [ ! -d "/usr/lib/jvm/java-17-temurin" ]; then
                         sudo mkdir -p /usr/lib/jvm/java-17-temurin
@@ -24,6 +24,17 @@ pipeline {
                     fi
 
                     sudo pip3 install semgrep --break-system-packages || sudo pip3 install semgrep
+
+                    # SonarScanner CLI (pinned version; installed once on the agent)
+                    SONAR_SCANNER_VERSION=8.1.0.6389
+                    if [ ! -x /opt/sonar-scanner/bin/sonar-scanner ]; then
+                        sudo mkdir -p /opt/sonar-scanner
+                        curl -fsSL "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux-x64.zip" -o /tmp/sonar-scanner.zip
+                        sudo unzip -q /tmp/sonar-scanner.zip -d /tmp/sonar-scanner-install
+                        sudo cp -r /tmp/sonar-scanner-install/sonar-scanner-*/ /opt/sonar-scanner/
+                        sudo chmod -R +x /opt/sonar-scanner/bin /opt/sonar-scanner/jre/bin
+                        rm -rf /tmp/sonar-scanner.zip /tmp/sonar-scanner-install
+                    fi
                 '''
             }
         }
