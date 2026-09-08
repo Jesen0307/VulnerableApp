@@ -31,13 +31,33 @@ mkdir -p "$OUTPUT_DIR"
 echo "[sonarqube-scan] Starting SonarQube scan for project '$PROJECT_KEY'"
 echo "[sonarqube-scan] Host: $HOST_URL"
 
-# Build the docker arg list. The scanner container shares the runner's network so
-# it can reach HOST_URL. The project source + compiled classes are mounted at
-# /usr/src (the image's WORKDIR), so the relative paths below resolve inside it.
+# Docker mount strategy:
+#  - Running directly on the host: bind-mount the project dir as /usr/src
+#    (the image's WORKDIR) so relative paths resolve inside the container.
+#  - Running inside a container (e.g. Jenkins agent with docker.sock mounted):
+#    bind-mounting "$(pwd)" would be resolved by the HOST daemon against an
+#    in-container path (e.g. /var/jenkins_home/...) that doesn't exist on the
+#    host, silently mounting an EMPTY dir. Instead share this container's
+#    volumes with --volumes-from and run with the absolute workspace path as
+#    the working directory (identical path exists in the child via the volume).
+MOUNT_ARGS=()
+RUNTIME_BASE="/usr/src"
+SELF_ID="$(cat /etc/hostname 2>/dev/null || true)"
+if [ -n "$SELF_ID" ] && docker inspect -f '{{.Id}}' "$SELF_ID" >/dev/null 2>&1; then
+    echo "[sonarqube-scan] Running inside container '$SELF_ID'; sharing workspace via --volumes-from"
+    MOUNT_ARGS=(--volumes-from "$SELF_ID")
+    RUNTIME_BASE="$(pwd)"
+else
+    MOUNT_ARGS=(-v "$(pwd):/usr/src")
+fi
+
+# Build the docker arg list. The scanner container shares the network so it can
+# reach HOST_URL.
 SCAN_ARGS=(
     --rm
     --network="host"
-    -v "$(pwd):/usr/src"
+    "${MOUNT_ARGS[@]}"
+    -w "$RUNTIME_BASE"
     sonarsource/sonar-scanner-cli
     -Dsonar.projectKey="$PROJECT_KEY"
     -Dsonar.projectName="$PROJECT_KEY"
