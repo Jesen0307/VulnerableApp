@@ -176,12 +176,12 @@ def api_request(path):
         return json.load(resp)
 
 
-# Issues (paged)
+# Issues (paged) - only security issues
 page = 1
 while True:
     try:
         data = api_request(
-            f"/api/issues/search?componentKeys={project_key}&ps={page_size}&p={page}")
+            f"/api/issues/search?componentKeys={project_key}&impactSoftwareQualities=SECURITY&ps={page_size}&p={page}")
     except Exception as e:
         print(f"[sonarqube-scan] WARNING: could not fetch issues: {e}", file=sys.stderr)
         break
@@ -201,28 +201,9 @@ while True:
         break
     page += 1
 
-# Hotspots (best effort)
-try:
-    data = api_request(
-        f"/api/hotspots/search?projectKey={project_key}&ps={page_size}")
-except Exception as e:
-    print(f"[sonarqube-scan] WARNING: could not fetch hotspots (may lack privilege): {e}",
-          file=sys.stderr)
-else:
-    for h in data.get("hotspots", []):
-        result["hotspots"].append({
-            "key": h.get("key"),
-            "ruleKey": h.get("ruleKey"),
-            "component": h.get("component"),
-            "vulnerabilityProbability": h.get("vulnerabilityProbability"),
-            "message": h.get("message"),
-            "line": h.get("line"),
-        })
-
 with open(out_path, "w") as f:
     json.dump(result, f)
-print(f"[sonarqube-scan] Exported {len(result['issues'])} issues and "
-      f"{len(result['hotspots'])} hotspots to {out_path}")
+print(f"[sonarqube-scan] Exported {len(result['issues'])} security issues to {out_path}")
 PYEOF
 else
     echo "[sonarqube-scan] Analysis did not complete; no findings exported." >&2
