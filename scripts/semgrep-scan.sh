@@ -13,7 +13,7 @@ set -euo pipefail
 WORKSPACE_ROOT="${1:-.}"
 OUTPUT_DIR="${2:-$WORKSPACE_ROOT}"
 TIMEOUT=3600  # 1 hour timeout
-RULES="${SEMGREP_CONFIG:-p/java}"
+RULES="${SEMGREP_CONFIG:-auto}"
 
 cd "$WORKSPACE_ROOT"
 
