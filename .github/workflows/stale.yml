@@ -14,7 +14,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-    - uses: actions/stale@v5
+    - uses: actions/stale@5ab8b44a11a00c41e72278f56abf35275b9d24414 # v5.2.1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 

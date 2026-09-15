@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Check first-time contributor
         id: check
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4a6ee6b68a0d5a75105d0a161 # v7.0.1
         with:
           github-token: ${{ secrets.GH_TRAFFIC_TOKEN }}
           script: |
@@ -48,7 +48,7 @@ jobs:
 
       - name: Comment with form
         if: steps.check.outputs.first_time == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4a6ee6b68a0d5a75105d0a161 # v7.0.1
         with:
           github-token: ${{ secrets.GH_TRAFFIC_TOKEN }}
           script: |
@@ -80,7 +80,7 @@ jobs:
 
       - name: Label the PR
         if: steps.check.outputs.first_time == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4a6ee6b68a0d5a75105d0a161 # v7.0.1
         with:
           github-token: ${{ secrets.GH_TRAFFIC_TOKEN }}
           script: |
@@ -93,7 +93,7 @@ jobs:
             
       - name: Trigger all-contributors bot
         if: steps.check.outputs.first_time == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4a6ee6b68a0d5a75105d0a161 # v7.0.1
         with: 
           github-token: ${{ secrets.GH_TRAFFIC_TOKEN }}
           script: |

@@ -107,8 +107,13 @@ public final class PasswordHashingUtils {
      *
      * <p>Algorithm based on the LAN Manager specification.
      *
+     * <p>DEPRECATED for any new use: LM relies on single DES (DES/ECB/NoPadding below, provided
+     * for byte-for-byte compatibility with the legacy challenge fixture only). It is broken by
+     * design and must not protect real credentials; use {@link #bCryptHash(String)} instead.
+     *
      * @see <a href="https://en.wikipedia.org/wiki/LAN_Manager">Wikipedia: LAN Manager</a>
      */
+    @Deprecated
     public static String lmHash(String rawPassword) {
         try {
             // Convert to uppercase and pad to 14 bytes

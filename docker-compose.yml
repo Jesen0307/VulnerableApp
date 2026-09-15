@@ -2,21 +2,45 @@ version: "3.9"
 services:
     VulnerableApp-base:
       image: sasanlabs/owasp-vulnerableapp:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       networks:
         - app_net
       
     VulnerableApp-jsp:
       image: sasanlabs/owasp-vulnerableapp-jsp:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       networks:
         - app_net
- 
+
     VulnerableApp-php:
       image: sasanlabs/owasp-vulnerableapp-php:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       networks:
         - app_net
 
     ollama:
       image: ollama/ollama:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       ports:
        - "11434:11434"
       volumes:
@@ -34,6 +58,12 @@ services:
 
     ollama-model-init:
       image: ollama/ollama:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       depends_on:
         ollama:
           condition: service_healthy
@@ -56,6 +86,12 @@ services:
 
     llmforge:
       image: sasanlabs/llmforge:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       depends_on:
         ollama:
           condition: service_healthy
@@ -75,6 +111,12 @@ services:
 
     mailpit:
       image: axllent/mailpit:v1.30.1
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       restart: unless-stopped
       expose:
         - "1025"
@@ -101,6 +143,14 @@ services:
         - llmforge
         - mailpit
       image: sasanlabs/owasp-vulnerableapp-facade:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
+        - /var/cache/nginx
+        - /var/run
       volumes:
        - ./templates:/etc/nginx/templates
       ports:

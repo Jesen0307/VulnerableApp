@@ -3,6 +3,12 @@ version: "3.9"
 services:
   VulnerableApp-base:
     image: sasanlabs/owasp-vulnerableapp:unreleased
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /run
     networks:
       - internal
     restart: unless-stopped
@@ -23,6 +29,14 @@ services:
     depends_on:
       - VulnerableApp-base
     image: sasanlabs/owasp-vulnerableapp-facade:latest
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /run
+      - /var/cache/nginx
+      - /var/run
     restart: unless-stopped
     volumes:
       - ./templates:/etc/nginx/templates:ro

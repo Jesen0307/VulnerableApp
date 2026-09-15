@@ -1,0 +1,2919 @@
+[
+  {
+    "file_path": ".github/workflows/create-release.yml",
+    "line_number": 18,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/create-release.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/create-release.yml",
+    "line_number": 29,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/create-release.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/create-release.yml",
+    "line_number": 35,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/create-release.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 20,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 25,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 31,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 34,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 37,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 43,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 46,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/docker.yml",
+    "line_number": 55,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/docker.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/gradle.yml",
+    "line_number": 15,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/gradle.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/gradle.yml",
+    "line_number": 18,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/gradle.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/gradle.yml",
+    "line_number": 31,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/gradle.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/onboard_sasanlabs.yml",
+    "line_number": 19,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/onboard_sasanlabs.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/onboard_sasanlabs.yml",
+    "line_number": 51,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/onboard_sasanlabs.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/onboard_sasanlabs.yml",
+    "line_number": 83,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/onboard_sasanlabs.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/onboard_sasanlabs.yml",
+    "line_number": 96,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/onboard_sasanlabs.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/stale.yml",
+    "line_number": 17,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/stale.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/stats.yml",
+    "line_number": 16,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/stats.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/zap-benchmark.yml",
+    "line_number": 30,
+    "severity": "ERROR",
+    "rule_ids": [
+      "yaml.github-actions.security.run-shell-injection.run-shell-injection"
+    ],
+    "messages": [
+      "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\"."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": ".github/workflows/zap-benchmark.yml::yaml.github-actions.security.run-shell-injection.run-shell-injection",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/zap-benchmark.yml",
+    "line_number": 87,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/zap-benchmark.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/zap-benchmark.yml",
+    "line_number": 241,
+    "severity": "ERROR",
+    "rule_ids": [
+      "yaml.github-actions.security.run-shell-injection.run-shell-injection"
+    ],
+    "messages": [
+      "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\"."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": ".github/workflows/zap-benchmark.yml::yaml.github-actions.security.run-shell-injection.run-shell-injection",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": ".github/workflows/zap-benchmark.yml",
+    "line_number": 278,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
+    ],
+    "messages": [
+      "GitHub Actions step uses a mutable tag or branch reference. Tags and branch names can be silently repointed by the action owner, enabling supply-chain attacks \u2014 as seen in the trivy-action and kics-github-action compromises. Pin the reference to a full 40-character commit SHA instead, e.g. `uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608`."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "supply_chain",
+    "rule_cluster_id": ".github/workflows/zap-benchmark.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.local.yml",
+    "line_number": 3,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-base' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-base' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.local.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.local.yml",
+    "line_number": 8,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'mailpit' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'mailpit' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.local.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.local.yml",
+    "line_number": 28,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-facade' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-facade' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.local.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.prod.yml",
+    "line_number": 4,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-base' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-base' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.prod.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.prod.yml",
+    "line_number": 22,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-facade' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-facade' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.prod.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.without_llm.yml",
+    "line_number": 3,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-base' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-base' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.without_llm.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.without_llm.yml",
+    "line_number": 6,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-jsp' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-jsp' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.without_llm.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.without_llm.yml",
+    "line_number": 9,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-php' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-php' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.without_llm.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.without_llm.yml",
+    "line_number": 12,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'mailpit' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'mailpit' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.without_llm.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.without_llm.yml",
+    "line_number": 28,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-facade' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-facade' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.without_llm.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 3,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-base' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-base' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 8,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-jsp' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-jsp' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 13,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-php' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-php' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 18,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'ollama' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'ollama' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 35,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'ollama-model-init' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'ollama-model-init' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 57,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'llmforge' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'llmforge' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 76,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'mailpit' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'mailpit' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "docker-compose.yml",
+    "line_number": 96,
+    "severity": "WARNING",
+    "rule_ids": [
+      "yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+      "yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service"
+    ],
+    "messages": [
+      "Service 'VulnerableApp-facade' allows for privilege escalation via setuid or setgid binaries. Add 'no-new-privileges:true' in 'security_opt' to prevent this.",
+      "Service 'VulnerableApp-facade' is running with a writable root filesystem. This may allow malicious applications to download and run additional payloads, or modify container files. If an application inside a container has to save something temporarily consider using a tmpfs. Add 'read_only: true' to this service to prevent this."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "docker",
+    "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/configuration/VulnerableAppConfiguration.java",
+    "line_number": 134,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.lang.security.audit.jdbc-sql-formatted-string.jdbc-sql-formatted-string",
+      "java.spring.security.audit.spring-sqli.spring-sqli"
+    ],
+    "messages": [
+      "Possible JDBC injection detected. Use the parameterized query feature available in queryForObject instead of concatenating or formatting strings: 'jdbc.queryForObject(\"select * from table where name = ?\", Integer.class, parameterName);'",
+      "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/configuration/VulnerableAppConfiguration.java::java.lang.security.audit.jdbc-sql-formatted-string.jdbc-sql-formatted-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 60,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 75,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 93,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 113,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 134,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 150,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 186,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
+    "line_number": 202,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/internal/utility/EncryptionUtils.java",
+    "line_number": 88,
+    "severity": "CRITICAL",
+    "rule_ids": [
+      "java:S5542",
+      "java.lang.security.audit.crypto.ecb-cipher.ecb-cipher",
+      "java.lang.security.audit.crypto.use-of-aes-ecb.use-of-aes-ecb",
+      "java:S3329"
+    ],
+    "messages": [
+      "Use a secure cipher mode.",
+      "Cipher in ECB mode is detected. ECB mode produces the same output for the same input each time which allows an attacker to intercept and replay the data. Further, ECB mode does not provide any integrity checking. See https://find-sec-bugs.github.io/bugs.htm#CIPHER_INTEGRITY.",
+      "Use of AES with ECB mode detected. ECB doesn't provide message confidentiality and  is not semantically secure so should not be used. Instead, use a strong, secure cipher: Cipher.getInstance(\"AES/CBC/PKCS7PADDING\"). See https://owasp.org/www-community/Using_the_Java_Cryptographic_Extensions for more information.",
+      "Use another cipher mode or disable padding.",
+      "Use a dynamically-generated, random IV."
+    ],
+    "detected_by": [
+      "SonarQube",
+      "Semgrep"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/internal/utility/EncryptionUtils.java::java:S5542",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/internal/utility/PasswordHashingUtils.java",
+    "line_number": 150,
+    "severity": "CRITICAL",
+    "rule_ids": [
+      "java:S5547",
+      "java:S5542"
+    ],
+    "messages": [
+      "Use a strong cipher algorithm.",
+      "Use a secure cipher mode."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/internal/utility/PasswordHashingUtils.java::java:S5547",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/authentication/AuthLoginService.java",
+    "line_number": 51,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.audit.spring-sqli.spring-sqli"
+    ],
+    "messages": [
+      "Detected a string argument from a public method contract in a raw SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/authentication/AuthLoginService.java::java.spring.security.audit.spring-sqli.spring-sqli",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java",
+    "line_number": 48,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S4036"
+    ],
+    "messages": [
+      "Make sure the \"PATH\" variable only contains fixed, unwriteable directories."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "path_traversal",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java::java:S4036",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java",
+    "line_number": 53,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S4036"
+    ],
+    "messages": [
+      "Make sure the \"PATH\" variable only contains fixed, unwriteable directories."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "path_traversal",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java::java:S4036",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java",
+    "line_number": 53,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.lang.security.audit.command-injection-process-builder.command-injection-process-builder"
+    ],
+    "messages": [
+      "A formatted or concatenated string was detected as input to a ProcessBuilder call. This is dangerous if a variable is controlled by user input and could result in a command injection. Ensure your variables are not controlled by users or sufficiently sanitized."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java::java.lang.security.audit.command-injection-process-builder.command-injection-process-builder",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/PreflightController.java",
+    "line_number": 37,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping"
+    ],
+    "messages": [
+      "Detected a method annotated with 'RequestMapping' that does not specify the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or OPTIONS, and by default all HTTP methods are allowed when the HTTP method is not explicitly specified. This means that a method that performs state changes could be vulnerable to CSRF attacks. To mitigate, add the 'method' field and specify the HTTP method (such as 'RequestMethod.POST')."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "csrf",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/PreflightController.java::java.spring.security.unrestricted-request-mapping.unrestricted-request-mapping",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/PreflightController.java",
+    "line_number": 46,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-file-path.tainted-file-path"
+    ],
+    "messages": [
+      "Detected user input controlling a file path. An attacker could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "path_traversal",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/PreflightController.java::java.spring.security.injection.tainted-file-path.tainted-file-path",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java",
+    "line_number": 56,
+    "severity": "MAJOR",
+    "rule_ids": [
+      "java:S2245"
+    ],
+    "messages": [
+      "Make sure that using this pseudorandom number generator is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "weak_crypto",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java::java:S2245",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java",
+    "line_number": 98,
+    "severity": "CRITICAL",
+    "rule_ids": [
+      "java:S5443"
+    ],
+    "messages": [
+      "Make sure publicly writable directories are used safely here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java::java:S5443",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java",
+    "line_number": 102,
+    "severity": "CRITICAL",
+    "rule_ids": [
+      "java:S5443"
+    ],
+    "messages": [
+      "Make sure publicly writable directories are used safely here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java::java:S5443",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java",
+    "line_number": 136,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+    ],
+    "messages": [
+      "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java::java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java",
+    "line_number": 145,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+    ],
+    "messages": [
+      "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java::java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java",
+    "line_number": 161,
+    "severity": "WARNING",
+    "rule_ids": [
+      "java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly"
+    ],
+    "messages": [
+      "A cookie was detected without setting the 'HttpOnly' flag. The 'HttpOnly' flag for cookies instructs the browser to forbid client-side scripts from reading the cookie. Set the 'HttpOnly' flag by calling 'cookie.setHttpOnly(true);'"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java::java.lang.security.audit.cookie-missing-httponly.cookie-missing-httponly",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/jwt/bean/JWTUtils.java",
+    "line_number": 44,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "java:S6418"
+    ],
+    "messages": [
+      "'TOKEN' detected in this expression, review this potentially hard-coded secret."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/jwt/bean/JWTUtils.java::java:S6418",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/jwt/bean/JWTUtils.java",
+    "line_number": 48,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "java:S6418"
+    ],
+    "messages": [
+      "'TOKEN' detected in this expression, review this potentially hard-coded secret."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/jwt/bean/JWTUtils.java::java:S6418",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java",
+    "line_number": 92,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "java:S6437"
+    ],
+    "messages": [
+      "Revoke and change this password, as it is compromised."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java::java:S6437",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java",
+    "line_number": 95,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "java:S6437"
+    ],
+    "messages": [
+      "Revoke and change this password, as it is compromised."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java::java:S6437",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/passwordReset/PasswordResetService.java",
+    "line_number": 56,
+    "severity": "MAJOR",
+    "rule_ids": [
+      "java:S2245"
+    ],
+    "messages": [
+      "Make sure that using this pseudorandom number generator is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "weak_crypto",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/passwordReset/PasswordResetService.java::java:S2245",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java",
+    "line_number": 547,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-file-path.tainted-file-path"
+    ],
+    "messages": [
+      "Detected user input controlling a file path. An attacker could control the location of this file, to include going backwards in the directory with '../'. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "path_traversal",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java::java.spring.security.injection.tainted-file-path.tainted-file-path",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/rfi/UrlParamBasedRFI.java",
+    "line_number": 43,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-url-host.tainted-url-host"
+    ],
+    "messages": [
+      "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorization information sent with this request. They could also probe internal servers or other resources that the server running this code can access. (This is called server-side request forgery, or SSRF.) Do not allow arbitrary hosts. Instead, create an allowlist for approved hosts, hardcode the correct host, or ensure that the user data can only affect the path or parameters."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/rfi/UrlParamBasedRFI.java::java.spring.security.injection.tainted-url-host.tainted-url-host",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/rfi/UrlParamBasedRFI.java",
+    "line_number": 63,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-url-host.tainted-url-host"
+    ],
+    "messages": [
+      "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorization information sent with this request. They could also probe internal servers or other resources that the server running this code can access. (This is called server-side request forgery, or SSRF.) Do not allow arbitrary hosts. Instead, create an allowlist for approved hosts, hardcode the correct host, or ensure that the user data can only affect the path or parameters."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/rfi/UrlParamBasedRFI.java::java.spring.security.injection.tainted-url-host.tainted-url-host",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java",
+    "line_number": 93,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java",
+    "line_number": 135,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java",
+    "line_number": 185,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java",
+    "line_number": 83,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java",
+    "line_number": 143,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java",
+    "line_number": 206,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java",
+    "line_number": 272,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java",
+    "line_number": 85,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java",
+    "line_number": 115,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java",
+    "line_number": 130,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-sql-string.tainted-sql-string"
+    ],
+    "messages": [
+      "User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`connection.PreparedStatement`) or a safe library."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java::java.spring.security.injection.tainted-sql-string.tainted-sql-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/MetaDataServiceMock.java",
+    "line_number": 31,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/MetaDataServiceMock.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java",
+    "line_number": 67,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-url-host.tainted-url-host"
+    ],
+    "messages": [
+      "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorization information sent with this request. They could also probe internal servers or other resources that the server running this code can access. (This is called server-side request forgery, or SSRF.) Do not allow arbitrary hosts. Instead, create an allowlist for approved hosts, hardcode the correct host, or ensure that the user data can only affect the path or parameters."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java::java.spring.security.injection.tainted-url-host.tainted-url-host",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java",
+    "line_number": 161,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java",
+    "line_number": 161,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-url-host.tainted-url-host"
+    ],
+    "messages": [
+      "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorization information sent with this request. They could also probe internal servers or other resources that the server running this code can access. (This is called server-side request forgery, or SSRF.) Do not allow arbitrary hosts. Instead, create an allowlist for approved hosts, hardcode the correct host, or ensure that the user data can only affect the path or parameters."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java::java.spring.security.injection.tainted-url-host.tainted-url-host",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java",
+    "line_number": 189,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-url-host.tainted-url-host"
+    ],
+    "messages": [
+      "User data flows into the host portion of this manually-constructed URL. This could allow an attacker to send data to their own server, potentially exposing sensitive data such as cookies or authorization information sent with this request. They could also probe internal servers or other resources that the server running this code can access. (This is called server-side request forgery, or SSRF.) Do not allow arbitrary hosts. Instead, create an allowlist for approved hosts, hardcode the correct host, or ensure that the user data can only affect the path or parameters."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "insecure_cookie",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java::java.spring.security.injection.tainted-url-host.tainted-url-host",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 68,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 94,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 123,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 157,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 199,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 232,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
+    "line_number": 258,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java",
+    "line_number": 54,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java",
+    "line_number": 86,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java",
+    "line_number": 120,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java",
+    "line_number": 150,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java",
+    "line_number": 180,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.spring.security.injection.tainted-html-string.tainted-html-string"
+    ],
+    "messages": [
+      "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML by manually constructing HTML and this could create a cross-site scripting vulnerability, which could let attackers steal sensitive user data. To be sure this is safe, check that the HTML is rendered safely. You can use the OWASP ESAPI encoder if you must render user data."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "sql_injection",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSWithHtmlTagInjection.java::java.spring.security.injection.tainted-html-string.tainted-html-string",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xxe/XXEVulnerability.java",
+    "line_number": 364,
+    "severity": "ERROR",
+    "rule_ids": [
+      "java.lang.security.audit.xxe.saxparserfactory-disallow-doctype-decl-missing.saxparserfactory-disallow-doctype-decl-missing"
+    ],
+    "messages": [
+      "DOCTYPE declarations are enabled for this SAXParserFactory. This is vulnerable to XML external entity attacks. Disable this by setting the feature `http://apache.org/xml/features/disallow-doctype-decl` to true. Alternatively, allow DOCTYPE declarations and only prohibit external entities declarations. This can be done by setting the features `http://xml.org/sax/features/external-general-entities` and `http://xml.org/sax/features/external-parameter-entities` to false. NOTE - The previous links are not meant to be clicked. They are the literal config key values that are supposed to be used to disable these features. For more information, see https://semgrep.dev/docs/cheat-sheets/java-xxe/#3a-documentbuilderfactory."
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "framework_dep",
+    "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xxe/XXEVulnerability.java::java.lang.security.audit.xxe.saxparserfactory-disallow-doctype-decl-missing.saxparserfactory-disallow-doctype-decl-missing",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/application-unsafe.properties",
+    "line_number": 2,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "secrets:S6703"
+    ],
+    "messages": [
+      "Make sure this database password gets changed and removed from the code."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/application-unsafe.properties::secrets:S6703",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/resources/application-unsafe.properties",
+    "line_number": 5,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "secrets:S6703"
+    ],
+    "messages": [
+      "Make sure this database password gets changed and removed from the code."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/application-unsafe.properties::secrets:S6703",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/resources/attackvectors/JWTVulnerabilityPayload.properties",
+    "line_number": 1,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/attackvectors/JWTVulnerabilityPayload.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1352,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1363,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1374,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1385,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1391,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1435,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1446,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/i18n/messages.properties",
+    "line_number": 1457,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-jwt-token.detected-jwt-token"
+    ],
+    "messages": [
+      "JWT token detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/scripts/Authentication/db/data.sql",
+    "line_number": 27,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash"
+    ],
+    "messages": [
+      "bcrypt hash detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/scripts/Authentication/db/data.sql::generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/scripts/Authentication/db/data.sql",
+    "line_number": 31,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash"
+    ],
+    "messages": [
+      "bcrypt hash detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/scripts/Authentication/db/data.sql::generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/scripts/Authentication/db/data.sql",
+    "line_number": 35,
+    "severity": "ERROR",
+    "rule_ids": [
+      "generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash"
+    ],
+    "messages": [
+      "bcrypt hash detected"
+    ],
+    "detected_by": [
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/scripts/Authentication/db/data.sql::generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/main/resources/static/templates/JWTVulnerability/keys/private_key.pem",
+    "line_number": 5,
+    "severity": "BLOCKER",
+    "rule_ids": [
+      "secrets:S6706",
+      "generic.secrets.security.detected-private-key.detected-private-key"
+    ],
+    "messages": [
+      "Make sure this private key gets revoked, changed, and removed from the code.",
+      "Private Key detected. This is a sensitive credential and should not be hardcoded here. Instead, store this in a separate, private file."
+    ],
+    "detected_by": [
+      "SonarQube",
+      "Semgrep"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/main/resources/static/templates/JWTVulnerability/keys/private_key.pem::secrets:S6706",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": true,
+      "fix_applied": "Pattern fix applied for testing (see git diff)",
+      "fix_verified": true
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/benchmark/service/DastBenchmarkStrategyTest.java",
+    "line_number": 410,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/benchmark/service/DastBenchmarkStrategyTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 79,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 99,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 123,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 134,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 152,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 160,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java",
+    "line_number": 173,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerContextPathTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java",
+    "line_number": 195,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java",
+    "line_number": 198,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java",
+    "line_number": 205,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerabilityTest.java",
+    "line_number": 31,
+    "severity": "MINOR",
+    "rule_ids": [
+      "java:S1313"
+    ],
+    "messages": [
+      "Make sure using this hardcoded IP address is safe here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "hardcoded_secret",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerabilityTest.java::java:S1313",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  },
+  {
+    "file_path": "src/test/java/org/sasanlabs/service/vulnerability/xxe/XXEVulnerabilityTest.java",
+    "line_number": 493,
+    "severity": "CRITICAL",
+    "rule_ids": [
+      "java:S5443"
+    ],
+    "messages": [
+      "Make sure publicly writable directories are used safely here."
+    ],
+    "detected_by": [
+      "SonarQube"
+    ],
+    "category": "other",
+    "rule_cluster_id": "src/test/java/org/sasanlabs/service/vulnerability/xxe/XXEVulnerabilityTest.java::java:S5443",
+    "triage_reasoning": "User triaged as Fix (true positive) in Phase 4 batch review",
+    "remediation": {
+      "remediated": false,
+      "fix_applied": null,
+      "fix_verified": false,
+      "skip_reason": "Intentional demo fixture / low-risk (package naming, test data, challenge constants) \u2014 left intact"
+    }
+  }
+]

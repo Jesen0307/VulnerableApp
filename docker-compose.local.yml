@@ -2,11 +2,23 @@ version: "3.9"
 services:
     VulnerableApp-base:
       image: sasanlabs/owasp-vulnerableapp:unreleased
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       networks:
         - app_net
 
     mailpit:
       image: axllent/mailpit:v1.30.1
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
       restart: unless-stopped
       expose:
         - "1025"
@@ -30,6 +42,14 @@ services:
         - VulnerableApp-base
         - mailpit
       image: sasanlabs/owasp-vulnerableapp-facade:latest
+      security_opt:
+        - no-new-privileges:true
+      read_only: true
+      tmpfs:
+        - /tmp
+        - /run
+        - /var/cache/nginx
+        - /var/run
       volumes:
        - ./templates:/etc/nginx/templates
       ports:

@@ -36,6 +36,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ExtendWith(MockitoExtension.class)
 class VulnerableAppRestControllerContextPathTest {
 
+    private static final String TEST_HOST =
+            System.getenv().getOrDefault("TEST_HOST", "localhost");
+
     /** A deployment served somewhere other than the shipped default. */
     private static final String CUSTOM_CONTEXT_PATH = "/customCtx";
 
@@ -76,7 +79,7 @@ class VulnerableAppRestControllerContextPathTest {
 
         assertThat(appUrl.getValue())
                 .as("the scanner base URL must sit under the served context path")
-                .isEqualTo("https://10.0.0.5:443" + CUSTOM_CONTEXT_PATH + "/")
+                .isEqualTo("https://" + TEST_HOST + ":443" + CUSTOM_CONTEXT_PATH + "/")
                 .doesNotContain(DEFAULT_CONTEXT_PATH);
     }
 
@@ -96,7 +99,7 @@ class VulnerableAppRestControllerContextPathTest {
 
         assertThat(sitemap)
                 .as("every <loc> must sit under the served context path")
-                .contains("https://10.0.0.5:443" + CUSTOM_CONTEXT_PATH + "/SQLInjection/LEVEL_1")
+                .contains("https://" + TEST_HOST + ":443" + CUSTOM_CONTEXT_PATH + "/SQLInjection/LEVEL_1")
                 .doesNotContain(DEFAULT_CONTEXT_PATH);
     }
 
@@ -120,7 +123,7 @@ class VulnerableAppRestControllerContextPathTest {
         ArgumentCaptor<String> appUrl = ArgumentCaptor.forClass(String.class);
         verify(endPointsInformationProvider).getScannerRelatedEndPointInformation(appUrl.capture());
         assertThat(appUrl.getValue())
-                .isEqualTo("https://10.0.0.5:443" + DEFAULT_CONTEXT_PATH + "/");
+                .isEqualTo("https://" + TEST_HOST + ":443" + DEFAULT_CONTEXT_PATH + "/");
 
         String sitemap =
                 mockMvc.perform(
@@ -131,7 +134,7 @@ class VulnerableAppRestControllerContextPathTest {
                         .getResponse()
                         .getContentAsString();
         assertThat(sitemap)
-                .contains("https://10.0.0.5:443" + DEFAULT_CONTEXT_PATH + "/SQLInjection/LEVEL_1");
+                .contains("https://" + TEST_HOST + ":443" + DEFAULT_CONTEXT_PATH + "/SQLInjection/LEVEL_1");
     }
 
     /**
@@ -149,7 +152,7 @@ class VulnerableAppRestControllerContextPathTest {
 
         ArgumentCaptor<String> appUrl = ArgumentCaptor.forClass(String.class);
         verify(endPointsInformationProvider).getScannerRelatedEndPointInformation(appUrl.capture());
-        assertThat(appUrl.getValue()).isEqualTo("https://10.0.0.5:443/");
+        assertThat(appUrl.getValue()).isEqualTo("https://" + TEST_HOST + ":443/");
 
         String sitemap =
                 mockMvc.perform(get("/sitemap.xml").with(servedOverHttps()))
@@ -157,7 +160,7 @@ class VulnerableAppRestControllerContextPathTest {
                         .getResponse()
                         .getContentAsString();
         assertThat(sitemap)
-                .contains("https://10.0.0.5:443/SQLInjection/LEVEL_1")
+                .contains("https://" + TEST_HOST + ":443/SQLInjection/LEVEL_1")
                 .doesNotContain(DEFAULT_CONTEXT_PATH);
     }
 
@@ -170,7 +173,7 @@ class VulnerableAppRestControllerContextPathTest {
     private static RequestPostProcessor servedOverHttps() {
         return request -> {
             request.setScheme("https");
-            request.setServerName("10.0.0.5");
+            request.setServerName(TEST_HOST);
             request.setServerPort(443);
             return request;
         };

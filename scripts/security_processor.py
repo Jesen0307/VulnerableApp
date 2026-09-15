@@ -198,6 +198,7 @@ def deduplicate_sast(findings: list[dict]) -> list[dict]:
             if _sev_rank(f["severity"]) > _sev_rank(m["severity"]):
                 m["severity"] = f["severity"]
             m["_categories"] |= f_cats
+            
             # Carry hotspot key if present
             if f.get("_hotspot_key") and f["_hotspot_key"] not in m.get("_hotspot_keys", []):
                 m.setdefault("_hotspot_keys", []).append(f["_hotspot_key"])
@@ -248,11 +249,8 @@ def detect_syntax() -> None:
     pass
 
 
-def build_batches(findings: list[dict], max_per_batch: int = 15) -> list[dict]:
+def build_batches(findings: list[dict], max_per_batch: int = 100) -> list[dict]:
     """Group deduplicated findings into category-based batches for triage.
-
-    Ordering: sort by category first (stable), then by file/line. Emits a
-    list of batch objects, each with a category and its findings.
     """
     from collections import defaultdict
     by_cat: dict[str, list[dict]] = defaultdict(list)
@@ -260,15 +258,15 @@ def build_batches(findings: list[dict], max_per_batch: int = 15) -> list[dict]:
         by_cat[f.get("category", "other")].append(f)
 
     batches: list[dict] = []
-    for cat in sorted(by_cat.keys()):
-        members = sorted(
-            by_cat[cat], key=lambda x: (x["file_path"], x.get("line_number", 0))
-        )
+    for cat in by_cat.keys():
+        members = by_cat[cat]
+        total = len(members)
         for i in range(0, len(members), max_per_batch):
             chunk = members[i : i + max_per_batch]
             batches.append({
                 "category": cat,
                 "count": len(chunk),
+                "category_total": total,
                 "findings": chunk,
             })
     return batches
@@ -278,10 +276,10 @@ def main():
     parser = argparse.ArgumentParser(description="Normalize & deduplicate security findings")
     parser.add_argument("--workspace", default=".", help="Workspace root containing scanner outputs")
     parser.add_argument("--max-batch", type=int, default=15,
-                        help="Max findings per triage batch (default 15)")
+                        help="Max findings per triage batch (default 100)")
     args = parser.parse_args()
-    ws = Path(args.workspace)
-
+    # ws = Path(args.workspace)
+    ws = Path("/mnt/d/Work/Testing/VulnerableApp/java-security-reports")  # Hardcoded for testing
     sonar_data = load_json(ws / "sonar_raw.json")
     semgrep_data = load_json(ws / "semgrep_raw_output.json")
 
@@ -312,8 +310,11 @@ def main():
 
     print(f"[processor] Wrote {out_path}  —  SAST: {len(deduped_sast)}")
     print(f"[processor] Wrote {batch_path}  —  batches: {len(batches)}")
+    seen = set()
     for b in batches:
-        print(f"  - {b['category']}: {b['count']} findings")
+        if b['category'] not in seen:
+            seen.add(b['category'])
+            print(f"  - {b['category']}: {b['category_total']} findings")
 
 
 if __name__ == "__main__":
