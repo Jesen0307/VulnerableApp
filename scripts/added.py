@@ -278,8 +278,8 @@ def main():
     parser.add_argument("--max-batch", type=int, default=15,
                         help="Max findings per triage batch (default 100)")
     args = parser.parse_args()
-    # ws = Path(args.workspace)
-    ws = Path("/mnt/d/Work/Testing/VulnerableApp/java-security-reports")  # Hardcoded for testing
+    ws = Path(args.workspace)
+    # ws = Path("/mnt/d/Work/Testing/VulnerableApp/java-security-reports")  # Hardcoded for testing
     sonar_data = load_json(ws / "sonar_raw.json")
     semgrep_data = load_json(ws / "semgrep_raw_output.json")
 

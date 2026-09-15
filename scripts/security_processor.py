@@ -249,7 +249,7 @@ def detect_syntax() -> None:
     pass
 
 
-def build_batches(findings: list[dict], max_per_batch: int = 100) -> list[dict]:
+def build_batches(findings: list[dict]) -> list[dict]:
     """Group deduplicated findings into category-based batches for triage.
     """
     from collections import defaultdict
@@ -260,23 +260,17 @@ def build_batches(findings: list[dict], max_per_batch: int = 100) -> list[dict]:
     batches: list[dict] = []
     for cat in by_cat.keys():
         members = by_cat[cat]
-        total = len(members)
-        for i in range(0, len(members), max_per_batch):
-            chunk = members[i : i + max_per_batch]
-            batches.append({
-                "category": cat,
-                "count": len(chunk),
-                "category_total": total,
-                "findings": chunk,
-            })
+        batches.append({
+            "category": cat,
+            "count": len(members),
+            "findings": members,
+        })
     return batches
 
 
 def main():
     parser = argparse.ArgumentParser(description="Normalize & deduplicate security findings")
     parser.add_argument("--workspace", default=".", help="Workspace root containing scanner outputs")
-    parser.add_argument("--max-batch", type=int, default=15,
-                        help="Max findings per triage batch (default 100)")
     args = parser.parse_args()
     ws = Path(args.workspace)
     # ws = Path("/mnt/d/Work/Testing/VulnerableApp/java-security-reports")  # Hardcoded for testing
@@ -288,7 +282,7 @@ def main():
     sast_findings = raw_sonar + raw_semgrep
     deduped_sast = deduplicate_sast(sast_findings)
 
-    batches = build_batches(deduped_sast, args.max_batch)
+    batches = build_batches(deduped_sast)
 
     output = {
         "summary": {
@@ -310,11 +304,8 @@ def main():
 
     print(f"[processor] Wrote {out_path}  —  SAST: {len(deduped_sast)}")
     print(f"[processor] Wrote {batch_path}  —  batches: {len(batches)}")
-    seen = set()
     for b in batches:
-        if b['category'] not in seen:
-            seen.add(b['category'])
-            print(f"  - {b['category']}: {b['category_total']} findings")
+        print(f"  - {b['category']}: {b['count']} findings")
 
 
 if __name__ == "__main__":

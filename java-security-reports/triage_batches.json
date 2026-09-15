@@ -2,8 +2,7 @@
   "triage_batches": [
     {
       "category": "supply_chain",
-      "count": 15,
-      "category_total": 22,
+      "count": 22,
       "findings": [
         {
           "file_path": ".github/workflows/create-release.yml",
@@ -244,14 +243,7 @@
           ],
           "category": "supply_chain",
           "rule_cluster_id": ".github/workflows/onboard_sasanlabs.yml::yaml.github-actions.security.github-actions-mutable-action-tag.github-actions-mutable-action-tag"
-        }
-      ]
-    },
-    {
-      "category": "supply_chain",
-      "count": 7,
-      "category_total": 22,
-      "findings": [
+        },
         {
           "file_path": ".github/workflows/onboard_sasanlabs.yml",
           "line_number": 51,
@@ -368,8 +360,7 @@
     },
     {
       "category": "hardcoded_secret",
-      "count": 15,
-      "category_total": 33,
+      "count": 33,
       "findings": [
         {
           "file_path": ".github/workflows/zap-benchmark.yml",
@@ -610,14 +601,7 @@
           ],
           "category": "hardcoded_secret",
           "rule_cluster_id": "src/main/resources/i18n/messages.properties::generic.secrets.security.detected-jwt-token.detected-jwt-token"
-        }
-      ]
-    },
-    {
-      "category": "hardcoded_secret",
-      "count": 15,
-      "category_total": 33,
-      "findings": [
+        },
         {
           "file_path": "src/main/resources/i18n/messages.properties",
           "line_number": 1446,
@@ -860,14 +844,7 @@
           ],
           "category": "hardcoded_secret",
           "rule_cluster_id": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java::java:S1313"
-        }
-      ]
-    },
-    {
-      "category": "hardcoded_secret",
-      "count": 3,
-      "category_total": 33,
-      "findings": [
+        },
         {
           "file_path": "src/test/java/org/sasanlabs/controller/VulnerableAppRestControllerTest.java",
           "line_number": 198,
@@ -920,8 +897,7 @@
     },
     {
       "category": "docker",
-      "count": 15,
-      "category_total": 18,
+      "count": 18,
       "findings": [
         {
           "file_path": "docker-compose.local.yml",
@@ -1192,14 +1168,7 @@
           ],
           "category": "docker",
           "rule_cluster_id": "docker-compose.yml::yaml.docker-compose.security.no-new-privileges.no-new-privileges"
-        }
-      ]
-    },
-    {
-      "category": "docker",
-      "count": 3,
-      "category_total": 18,
-      "findings": [
+        },
         {
           "file_path": "docker-compose.yml",
           "line_number": 57,
@@ -1258,8 +1227,7 @@
     },
     {
       "category": "sql_injection",
-      "count": 15,
-      "category_total": 25,
+      "count": 25,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/configuration/VulnerableAppConfiguration.java",
@@ -1502,14 +1470,7 @@
           ],
           "category": "sql_injection",
           "rule_cluster_id": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java::java.spring.security.injection.tainted-html-string.tainted-html-string"
-        }
-      ]
-    },
-    {
-      "category": "sql_injection",
-      "count": 10,
-      "category_total": 25,
-      "findings": [
+        },
         {
           "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xss/reflected/XSSInImgTagAttribute.java",
           "line_number": 123,
@@ -1675,7 +1636,6 @@
     {
       "category": "csrf",
       "count": 9,
-      "category_total": 9,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/controller/VulnerableAppRestController.java",
@@ -1826,7 +1786,6 @@
     {
       "category": "other",
       "count": 7,
-      "category_total": 7,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/internal/utility/EncryptionUtils.java",
@@ -1955,7 +1914,6 @@
     {
       "category": "path_traversal",
       "count": 4,
-      "category_total": 4,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java",
@@ -2026,7 +1984,6 @@
     {
       "category": "weak_crypto",
       "count": 2,
-      "category_total": 2,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java",
@@ -2065,7 +2022,6 @@
     {
       "category": "insecure_cookie",
       "count": 8,
-      "category_total": 8,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/service/vulnerability/idor/IDORLoginController.java",
@@ -2200,7 +2156,6 @@
     {
       "category": "framework_dep",
       "count": 1,
-      "category_total": 1,
       "findings": [
         {
           "file_path": "src/main/java/org/sasanlabs/service/vulnerability/xxe/XXEVulnerability.java",
