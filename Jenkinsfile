@@ -9,6 +9,7 @@ pipeline {
         PATH = "/opt/sonar-scanner/bin:${env.PATH}"
         SONAR_TOKEN = 'squ_a76c5e818a392cb07370af0fb874c9e3fe84ec90'
         SONAR_PROJECT_KEY = 'VulnerableApp'
+        SEMGREP_FAILED = 'false'
     }
 
     stages {
@@ -50,24 +51,50 @@ pipeline {
             steps {
                 script {
                     sh 'mkdir -p $REPORTS_DIR'
+                    
+                    def semgrepExitCode = 0
 
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
-                            sh './scripts/semgrep-scan.sh . $REPORTS_DIR'
+                            // returnStatus: true captures the exit code without throwing an exception immediately
+                            semgrepExitCode = sh(
+                                script: './scripts/semgrep-scan.sh . $REPORTS_DIR', 
+                                returnStatus: true
+                            )
                         },
                         'SonarQube Analysis': {
                             sh 'chmod +x scripts/sonarqube-scan.sh'
                             sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
                         }
                     )
+
+                    // Flag the failure if Semgrep detected high-severity issues (exit code non-zero)
+                    if (semgrepExitCode != 0) {
+                        env.SEMGREP_FAILED = 'true'
+                        echo "Semgrep found blocking vulnerabilities (Exit code: ${semgrepExitCode}). Continuing pipeline for deduplication..."
+                    }
                 }
             }
         }
 
         stage('Deduplicate Findings') {
             steps {
+                // This stage is guaranteed to run even if Semgrep found issues, 
+                // allowing your python script to process the generated semgrep.json
                 sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
+            }
+        }
+
+        stage('Quality Gate Enforcement') {
+            steps {
+                script {
+                    // Final gate check: Fails the build *after* your processing/deduplication logic is done
+                    if (env.SEMGREP_FAILED == 'true') {
+                        currentBuild.result = 'FAILURE'
+                        error("Pipeline failed: Semgrep detected high-severity vulnerabilities.")
+                    }
+                }
             }
         }
     }
