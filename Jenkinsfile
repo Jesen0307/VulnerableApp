@@ -3,13 +3,12 @@ pipeline {
 
     environment {
         REPORTS_DIR = 'security-reports'
-        // Jenkins container is attached to the SonarQube 'sonarnet' network,
-        // so SonarQube is reachable by its Docker DNS name (stable, no hardcoded IP).
         SONAR_HOST_URL = 'http://sonarqube:9000'
         PATH = "/opt/sonar-scanner/bin:${env.PATH}"
         SONAR_TOKEN = 'squ_a76c5e818a392cb07370af0fb874c9e3fe84ec90'
         SONAR_PROJECT_KEY = 'VulnerableApp'
         SEMGREP_FAILED = 'false'
+        SONAR_FAILED = 'false'
     }
 
     stages {
@@ -26,7 +25,6 @@ pipeline {
 
                     sudo pip3 install semgrep --break-system-packages || sudo pip3 install semgrep
 
-                    # SonarScanner CLI (pinned version; installed once on the agent)
                     SONAR_SCANNER_VERSION=8.1.0.6389
                     if [ ! -x /opt/sonar-scanner/bin/sonar-scanner ]; then
                         sudo mkdir -p /opt/sonar-scanner
@@ -54,10 +52,10 @@ pipeline {
                     
                     def semgrepExitCode = 0
 
+                    // 1. Run both scans in parallel
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
-                            // returnStatus: true captures the exit code without throwing an exception immediately
                             semgrepExitCode = sh(
                                 script: './scripts/semgrep-scan.sh . $REPORTS_DIR', 
                                 returnStatus: true
@@ -65,14 +63,27 @@ pipeline {
                         },
                         'SonarQube Analysis': {
                             sh 'chmod +x scripts/sonarqube-scan.sh'
-                            sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
+                            withSonarQubeEnv('sonar') { 
+                                sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
+                            }
                         }
                     )
 
-                    // Flag the failure if Semgrep detected high-severity issues (exit code non-zero)
+                    // 2. Evaluate Semgrep results
                     if (semgrepExitCode != 0) {
                         env.SEMGREP_FAILED = 'true'
-                        echo "Semgrep found blocking vulnerabilities (Exit code: ${semgrepExitCode}). Continuing pipeline for deduplication..."
+                        echo "Semgrep found blocking vulnerabilities."
+                    }
+
+                    // 3. Evaluate SonarQube Quality Gate right here after parallel finishes
+                    timeout(time: 10, unit: 'MINUTES') {
+                        def qg = waitForQualityGate(abortPipeline: false)
+                        if (qg.status != 'OK') {
+                            env.SONAR_FAILED = 'true'
+                            echo "SonarQube Quality Gate failed with status: ${qg.status}."
+                        } else {
+                            echo "SonarQube Quality Gate passed successfully."
+                        }
                     }
                 }
             }
@@ -80,8 +91,7 @@ pipeline {
 
         stage('Deduplicate Findings') {
             steps {
-                // This stage is guaranteed to run even if Semgrep found issues, 
-                // allowing your python script to process the generated semgrep.json
+                // Runs safely without crashing, consuming semgrep.json and sonar reports
                 sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
             }
         }
@@ -89,10 +99,19 @@ pipeline {
         stage('Quality Gate Enforcement') {
             steps {
                 script {
-                    // Final gate check: Fails the build *after* your processing/deduplication logic is done
+                    def hasFailed = false
+                    
                     if (env.SEMGREP_FAILED == 'true') {
+                        hasFailed = true
+                    }
+                    
+                    if (env.SONAR_FAILED == 'true') {
+                        hasFailed = true
+                    }
+
+                    if (hasFailed) {
                         currentBuild.result = 'FAILURE'
-                        error("Pipeline failed: Semgrep detected high-severity vulnerabilities.")
+                        error("Pipeline failed due to security vulnerabilities or Quality Gate violations.")
                     }
                 }
             }
