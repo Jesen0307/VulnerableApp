@@ -62,9 +62,7 @@ pipeline {
                         },
                         'SonarQube Analysis': {
                             sh 'chmod +x scripts/sonarqube-scan.sh'
-                            withSonarQubeEnv{ 
-                                sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
-                            }
+                            sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
                         }
                     )
 
@@ -88,13 +86,11 @@ pipeline {
 
         stage('Deduplicate Findings') {
             steps {
-                sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
-            }
-        }
-
-        stage('Quality Gate Enforcement') {
-            steps {
                 script {
+                    // 1. Run your deduplication script to generate JSON files for the agent
+                    sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
+
+                    // 2. Enforce gates at the very end of this stage
                     def hasFailed = false
                     
                     if (env.SEMGREP_FAILED == 'true') {
@@ -117,7 +113,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-            // Scoped down specifically to your requested processor outputs and raw scan outputs
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/semgrep_raw_output.json, ${env.REPORTS_DIR}/triage_batches.json, ${env.REPORTS_DIR}/normalized_findings.json", allowEmptyArchive: true
         }
     }
