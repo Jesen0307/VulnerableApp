@@ -52,7 +52,6 @@ pipeline {
                     
                     def semgrepExitCode = 0
 
-                    // 1. Run both scans in parallel
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
@@ -69,13 +68,11 @@ pipeline {
                         }
                     )
 
-                    // 2. Evaluate Semgrep results
                     if (semgrepExitCode != 0) {
                         env.SEMGREP_FAILED = 'true'
                         echo "Semgrep found blocking vulnerabilities."
                     }
 
-                    // 3. Evaluate SonarQube Quality Gate right here after parallel finishes
                     timeout(time: 10, unit: 'MINUTES') {
                         def qg = waitForQualityGate(abortPipeline: false)
                         if (qg.status != 'OK') {
@@ -91,7 +88,6 @@ pipeline {
 
         stage('Deduplicate Findings') {
             steps {
-                // Runs safely without crashing, consuming semgrep.json and sonar reports
                 sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
             }
         }
@@ -121,7 +117,8 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution completed.'
-            archiveArtifacts artifacts: "${env.REPORTS_DIR}/*.json, ${env.REPORTS_DIR}/*.log", allowEmptyArchive: true
+            // Scoped down specifically to your requested processor outputs and raw scan outputs
+            archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/semgrep_raw_output.json, ${env.REPORTS_DIR}/triage_batches.json, ${env.REPORTS_DIR}/normalized_findings.json", allowEmptyArchive: true
         }
     }
 }
