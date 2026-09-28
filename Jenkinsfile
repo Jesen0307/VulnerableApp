@@ -62,7 +62,7 @@ pipeline {
                         },
                         'SonarQube Analysis': {
                             sh 'chmod +x scripts/sonarqube-scan.sh'
-                            withSonarQubeEnv('sonar') { 
+                            withSonarQubeEnv{ 
                                 sh './scripts/sonarqube-scan.sh . $SONAR_PROJECT_KEY $SONAR_HOST_URL $SONAR_TOKEN $REPORTS_DIR'
                             }
                         }
