@@ -78,7 +78,7 @@ pipeline {
         stage('Deduplicate Findings') {
             steps {
                 script {
-                    // 1. Poll SonarQube Quality Gate status via curl
+                    // 1. Poll SonarQube Quality Gate status via curl using stdin piping to avoid quote collisions
                     def qgExitCode = sh(
                         script: '''
                             TIMEOUT=600
@@ -88,7 +88,7 @@ pipeline {
 
                             while [ $ELAPSED -lt $TIMEOUT ]; do
                                 RESPONSE=$(curl -s -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/qualitygates/project_status?projectKey=${SONAR_PROJECT_KEY}")
-                                STATUS=$(python3 -c "import sys, json; print(json.loads('''$RESPONSE''').get('projectStatus', {}).get('status', 'PENDING'))" 2>/dev/null || echo "PENDING")
+                                STATUS=$(echo "$RESPONSE" | python3 -c "import sys, json; print(json.load(sys.stdin).get('projectStatus', {}).get('status', 'PENDING'))" 2>/dev/null || echo "PENDING")
 
                                 if [ "$STATUS" = "OK" ] || [ "$STATUS" = "ERROR" ] || [ "$STATUS" = "WARN" ]; then
                                     echo "SonarQube Quality Gate status: $STATUS"
