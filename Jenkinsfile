@@ -52,6 +52,7 @@ pipeline {
                     
                     def semgrepExitCode = 0
 
+                    // Run both scans in parallel without checking gates yet
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
@@ -70,16 +71,6 @@ pipeline {
                         env.SEMGREP_FAILED = 'true'
                         echo "Semgrep found blocking vulnerabilities."
                     }
-
-                    timeout(time: 10, unit: 'MINUTES') {
-                        def qg = waitForQualityGate(abortPipeline: false)
-                        if (qg.status != 'OK') {
-                            env.SONAR_FAILED = 'true'
-                            echo "SonarQube Quality Gate failed with status: ${qg.status}."
-                        } else {
-                            echo "SonarQube Quality Gate passed successfully."
-                        }
-                    }
                 }
             }
         }
@@ -87,10 +78,46 @@ pipeline {
         stage('Deduplicate Findings') {
             steps {
                 script {
-                    // 1. Run your deduplication script to generate JSON files for the agent
+                    // 1. Poll SonarQube Quality Gate status via curl
+                    def qgExitCode = sh(
+                        script: '''
+                            TIMEOUT=600
+                            ELAPSED=0
+                            INTERVAL=10
+                            STATUS="PENDING"
+
+                            while [ $ELAPSED -lt $TIMEOUT ]; do
+                                RESPONSE=$(curl -s -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/qualitygates/project_status?projectKey=${SONAR_PROJECT_KEY}")
+                                STATUS=$(python3 -c "import sys, json; print(json.loads('''$RESPONSE''').get('projectStatus', {}).get('status', 'PENDING'))" 2>/dev/null || echo "PENDING")
+
+                                if [ "$STATUS" = "OK" ] || [ "$STATUS" = "ERROR" ] || [ "$STATUS" = "WARN" ]; then
+                                    echo "SonarQube Quality Gate status: $STATUS"
+                                    break
+                                fi
+
+                                echo "Quality Gate status is $STATUS. Waiting for analysis computation..."
+                                sleep $INTERVAL
+                                ELAPSED=$((ELAPSED + INTERVAL))
+                            done
+
+                            if [ "$STATUS" != "OK" ]; then
+                                exit 1
+                            fi
+                        ''',
+                        returnStatus: true
+                    )
+
+                    if (qgExitCode != 0) {
+                        env.SONAR_FAILED = 'true'
+                        echo "SonarQube Quality Gate failed or timed out."
+                    } else {
+                        echo "SonarQube Quality Gate passed successfully."
+                    }
+
+                    // 2. Run your deduplication script guaranteed, regardless of gate status
                     sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
 
-                    // 2. Enforce gates at the very end of this stage
+                    // 3. Enforce pipeline failure at the very end of the stage
                     def hasFailed = false
                     
                     if (env.SEMGREP_FAILED == 'true') {
