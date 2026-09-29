@@ -7,8 +7,6 @@ pipeline {
         PATH = "/opt/sonar-scanner/bin:${env.PATH}"
         SONAR_TOKEN = 'squ_a76c5e818a392cb07370af0fb874c9e3fe84ec90'
         SONAR_PROJECT_KEY = 'VulnerableApp'
-        SEMGREP_FAILED = 'false'
-        SONAR_FAILED = 'false'
     }
 
     stages {
@@ -50,16 +48,19 @@ pipeline {
                 script {
                     sh 'mkdir -p $REPORTS_DIR'
                     
-                    def semgrepExitCode = 0
+                    def semgrepFailed = false
 
-                    // Run both scans in parallel without checking gates yet
+                    // Run both scans in parallel
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
-                            semgrepExitCode = sh(
+                            def semgrepExitCode = sh(
                                 script: './scripts/semgrep-scan.sh . $REPORTS_DIR', 
                                 returnStatus: true
                             )
+                            if (semgrepExitCode != 0) {
+                                semgrepFailed = true
+                            }
                         },
                         'SonarQube Analysis': {
                             sh 'chmod +x scripts/sonarqube-scan.sh'
@@ -67,9 +68,12 @@ pipeline {
                         }
                     )
 
-                    if (semgrepExitCode != 0) {
+                    // Store failure states in environment for the next stage
+                    if (semgrepFailed) {
                         env.SEMGREP_FAILED = 'true'
                         echo "Semgrep found blocking vulnerabilities."
+                    } else {
+                        env.SEMGREP_FAILED = 'false'
                     }
                 }
             }
@@ -78,7 +82,9 @@ pipeline {
         stage('Deduplicate Findings') {
             steps {
                 script {
-                    // 1. Poll SonarQube Quality Gate status via curl using stdin piping to avoid quote collisions
+                    def sonarFailed = false
+
+                    // 1. Poll SonarQube Quality Gate status via curl using stdin piping
                     def qgExitCode = sh(
                         script: '''
                             TIMEOUT=600
@@ -108,28 +114,17 @@ pipeline {
                     )
 
                     if (qgExitCode != 0) {
-                        env.SONAR_FAILED = 'true'
+                        sonarFailed = true
                         echo "SonarQube Quality Gate failed or timed out."
                     } else {
                         echo "SonarQube Quality Gate passed successfully."
                     }
 
-                    // 2. Run your deduplication script guaranteed, regardless of gate status
+                    // 2. GUARANTEED: Deduplication script always runs regardless of gate status
                     sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
 
-                    // 3. Enforce pipeline failure at the very end of the stage
-                    def hasFailed = false
-                    
-                    if (env.SEMGREP_FAILED == 'true') {
-                        hasFailed = true
-                    }
-                    
-                    if (env.SONAR_FAILED == 'true') {
-                        hasFailed = true
-                    }
-
-                    if (hasFailed) {
-                        currentBuild.result = 'FAILURE'
+                    // 3. Fail the pipeline at the very end of the stage if any check failed
+                    if (env.SEMGREP_FAILED == 'true' || sonarFailed) {
                         error("Pipeline failed due to security vulnerabilities or Quality Gate violations.")
                     }
                 }
@@ -139,7 +134,7 @@ pipeline {
 
     post {
         always {
-            echo 'Pipeline execution completed.'
+            echo 'Pipeline execution completed. Archiving reports for remediation agent...'
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/semgrep_raw_output.json, ${env.REPORTS_DIR}/triage_batches.json, ${env.REPORTS_DIR}/normalized_findings.json", allowEmptyArchive: true
         }
     }
