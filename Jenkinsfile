@@ -136,6 +136,14 @@ pipeline {
         always {
             echo 'Pipeline execution completed. Archiving reports for remediation agent...'
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/semgrep_raw_output.json, ${env.REPORTS_DIR}/triage_batches.json, ${env.REPORTS_DIR}/normalized_findings.json", allowEmptyArchive: true
+
+            // AI agent runs last, even when the scans fail the build
+            aiAgent agent: openCode(),
+                    apiCredentialsId: 'OpenCode',
+                    approvalTimeoutSeconds: 1,
+                    failOnAgentError: false,
+                    prompt: "Review this project and summarize it. Use the findings in ${env.REPORTS_DIR}/normalized_findings.json and ${env.REPORTS_DIR}/triage_batches.json as context.",
+                    yoloMode: true
         }
     }
 }
