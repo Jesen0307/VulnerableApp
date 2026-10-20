@@ -5,8 +5,13 @@ pipeline {
         REPORTS_DIR = 'security-reports'
         SONAR_HOST_URL = 'http://sonarqube:9000'
         PATH = "/opt/sonar-scanner/bin:${env.PATH}"
-        SONAR_TOKEN = 'squ_a76c5e818a392cb07370af0fb874c9e3fe84ec90'
+        SONAR_TOKEN = credentials('sonar-token')
         SONAR_PROJECT_KEY = 'VulnerableApp'
+
+        // --- DefectDojo (POC: hardcoded, replace with Jenkins credentials later) ---
+        DD_URL = 'http://defectdojo-nginx:8080'
+        DD_API_KEY = credentials('DEFECTDOJO_API_KEY')
+        DD_ENGAGEMENT_NAME = 'POC'
     }
 
     stages {
@@ -59,16 +64,59 @@ pipeline {
 
     post {
         always {
-            echo 'Pipeline execution completed. Archiving SonarQube report for remediation agent...'
-            archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json", allowEmptyArchive: true
+            echo 'Pipeline execution completed. Running AI review...'
 
             aiAgent agent: openCode(),
                     apiCredentialsId: 'OpenCode',
                     approvalTimeoutSeconds: 1,
                     failOnAgentError: false,
                     model: 'opencode/deepseek-v4.1-flash-free',
-                    prompt: "Review this project and summarize it. Use the findings in ${env.REPORTS_DIR}/sonar_raw.json as context.",
+                    prompt: """Review this project and summarize it. Use the findings in ${env.REPORTS_DIR}/sonar_raw.json as context.
+Save your final review to the file ${env.REPORTS_DIR}/Agentreview.json.
+The file must contain only valid JSON (no markdown, no code fences) with these keys:
+"summary" (string), "key_risks" (array of strings), "recommendations" (array of strings).""",
                     yoloMode: true
+
+
+            archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/Agentreview.json", allowEmptyArchive: true
+
+            script {
+                env.DD_ENGAGEMENT_ID = sh(returnStdout: true, script: '''
+                    curl -sS -H "Authorization: Token $DD_API_KEY" \
+                      "$DD_URL/api/v2/engagements/?name=$DD_ENGAGEMENT_NAME" \
+                      | python3 -c "import sys,json; r=json.load(sys.stdin).get('results',[]); print(r[0]['id'] if r else '')"
+                ''').trim()
+                echo "DefectDojo engagement '${env.DD_ENGAGEMENT_NAME}' resolved to ID '${env.DD_ENGAGEMENT_ID}'"
+            }
+
+            sh '''
+                for f in sonar_raw.json Agentreview.json; do
+                  if [ -f "$REPORTS_DIR/$f" ]; then
+                    echo "Uploading $f to DefectDojo engagement $DD_ENGAGEMENT_ID"
+                    curl -sS --fail -X POST "$DD_URL/api/v2/engagements/$DD_ENGAGEMENT_ID/files/" \
+                      -H "Authorization: Token $DD_API_KEY" \
+                      -F "title=$f - build $BUILD_NUMBER" \
+                      -F "file=@$REPORTS_DIR/$f" || echo "WARNING: upload of $f failed"
+                  else
+                    echo "WARNING: $REPORTS_DIR/$f not found, skipping upload"
+                  fi
+                done
+            '''
+
+            sh '''
+                if [ -f "$REPORTS_DIR/sonar_raw.json" ]; then
+                  curl -sS --fail -X POST "$DD_URL/api/v2/import-scan/" \
+                    -H "Authorization: Token $DD_API_KEY" \
+                    -F "scan_type=SonarQube Scan" \
+                    -F "engagement=$DD_ENGAGEMENT_ID" \
+                    -F "test_title=SonarQube - build $BUILD_NUMBER" \
+                    -F "active=true" \
+                    -F "verified=false" \
+                    -F "file=@$REPORTS_DIR/sonar_raw.json" || echo "WARNING: findings import failed"
+                else
+                  echo "WARNING: sonar_raw.json not found, skipping findings import"
+                fi
+            '''
         }
     }
 }
