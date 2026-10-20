@@ -57,7 +57,7 @@ pipeline {
                     
                     def semgrepFailed = false
 
-                    // Run both scans in parallel
+
                     parallel (
                         'Semgrep SAST': {
                             sh 'chmod +x scripts/semgrep-scan.sh'
@@ -75,7 +75,7 @@ pipeline {
                         }
                     )
 
-                    // Store failure states in environment for the next stage
+
                     if (semgrepFailed) {
                         env.SEMGREP_FAILED = 'true'
                         echo "Semgrep found blocking vulnerabilities."
@@ -91,7 +91,7 @@ pipeline {
                 script {
                     def sonarFailed = false
 
-                    // 1. Poll SonarQube Quality Gate status via curl using stdin piping
+
                     def qgExitCode = sh(
                         script: '''
                             TIMEOUT=600
@@ -127,10 +127,8 @@ pipeline {
                         echo "SonarQube Quality Gate passed successfully."
                     }
 
-                    // 2. GUARANTEED: Deduplication script always runs regardless of gate status
                     sh 'python3 scripts/security_processor.py --workspace $REPORTS_DIR'
 
-                    // 3. Fail the pipeline at the very end of the stage if any check failed
                     if (env.SEMGREP_FAILED == 'true' || sonarFailed) {
                         error("Pipeline failed due to security vulnerabilities or Quality Gate violations.")
                     }
@@ -144,7 +142,7 @@ pipeline {
             echo 'Pipeline execution completed. Archiving reports for remediation agent...'
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/semgrep_raw_output.json, ${env.REPORTS_DIR}/triage_batches.json, ${env.REPORTS_DIR}/normalized_findings.json", allowEmptyArchive: true
 
-            // AI agent runs last, even when the scans fail the build
+
             aiAgent agent: openCode(),
                     apiCredentialsId: 'OpenCode',
                     approvalTimeoutSeconds: 1,
