@@ -32,6 +32,13 @@ pipeline {
                         sudo chmod -R +x /opt/sonar-scanner/bin /opt/sonar-scanner/jre/bin
                         rm -rf /tmp/sonar-scanner.zip /tmp/sonar-scanner-install
                     fi
+
+                    # Install OpenCode CLI (required by the aiAgent step)
+                    if ! command -v opencode >/dev/null 2>&1; then
+                        sudo apt-get install -y nodejs npm
+                        sudo npm install -g opencode-ai
+                    fi
+                    opencode --version
                 '''
             }
         }
