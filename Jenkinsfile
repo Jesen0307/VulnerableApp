@@ -11,6 +11,8 @@ pipeline {
         // --- DefectDojo (POC: hardcoded, replace with Jenkins credentials later) ---
         DD_URL = 'http://defectdojo-nginx:8080'
         DD_API_KEY = credentials('DEFECTDOJO_API_KEY')
+        DD_PRODUCT_TYPE = 'Research and Development'
+        DD_PRODUCT_NAME = 'VulnerableApp'
         DD_ENGAGEMENT_NAME = 'POC'
     }
 
@@ -77,9 +79,30 @@ The file must contain only valid JSON (no markdown, no code fences) with these k
 "summary" (string), "key_risks" (array of strings), "recommendations" (array of strings).""",
                     yoloMode: true
 
-
+            // Save the AI review (and the Sonar report) as Jenkins build artifacts
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/Agentreview.json", allowEmptyArchive: true
 
+            // 1) Import sonar_raw.json as findings. auto_create_context creates the
+            //    product / engagement automatically if they do not exist yet.
+            sh '''
+                if [ -f "$REPORTS_DIR/sonar_raw.json" ]; then
+                  curl -sS --fail-with-body -X POST "$DD_URL/api/v2/import-scan/" \
+                    -H "Authorization: Token $DD_API_KEY" \
+                    -F "scan_type=SonarQube Scan" \
+                    -F "auto_create_context=true" \
+                    -F "product_type_name=$DD_PRODUCT_TYPE" \
+                    -F "product_name=$DD_PRODUCT_NAME" \
+                    -F "engagement_name=$DD_ENGAGEMENT_NAME" \
+                    -F "test_title=SonarQube - build $BUILD_NUMBER" \
+                    -F "active=true" \
+                    -F "verified=false" \
+                    -F "file=@$REPORTS_DIR/sonar_raw.json" || echo "WARNING: findings import failed"
+                else
+                  echo "WARNING: sonar_raw.json not found, skipping findings import"
+                fi
+            '''
+
+            // 2) The files endpoint needs the numeric engagement ID, so look it up by name
             script {
                 env.DD_ENGAGEMENT_ID = sh(returnStdout: true, script: '''
                     curl -sS -H "Authorization: Token $DD_API_KEY" \
@@ -89,11 +112,16 @@ The file must contain only valid JSON (no markdown, no code fences) with these k
                 echo "DefectDojo engagement '${env.DD_ENGAGEMENT_NAME}' resolved to ID '${env.DD_ENGAGEMENT_ID}'"
             }
 
+            // 3) Upload both files to the DefectDojo engagement
             sh '''
+                if [ -z "$DD_ENGAGEMENT_ID" ]; then
+                  echo "WARNING: engagement ID is empty, skipping file uploads"
+                  exit 0
+                fi
                 for f in sonar_raw.json Agentreview.json; do
                   if [ -f "$REPORTS_DIR/$f" ]; then
                     echo "Uploading $f to DefectDojo engagement $DD_ENGAGEMENT_ID"
-                    curl -sS --fail -X POST "$DD_URL/api/v2/engagements/$DD_ENGAGEMENT_ID/files/" \
+                    curl -sS --fail-with-body -X POST "$DD_URL/api/v2/engagements/$DD_ENGAGEMENT_ID/files/" \
                       -H "Authorization: Token $DD_API_KEY" \
                       -F "title=$f - build $BUILD_NUMBER" \
                       -F "file=@$REPORTS_DIR/$f" || echo "WARNING: upload of $f failed"
@@ -101,21 +129,6 @@ The file must contain only valid JSON (no markdown, no code fences) with these k
                     echo "WARNING: $REPORTS_DIR/$f not found, skipping upload"
                   fi
                 done
-            '''
-
-            sh '''
-                if [ -f "$REPORTS_DIR/sonar_raw.json" ]; then
-                  curl -sS --fail -X POST "$DD_URL/api/v2/import-scan/" \
-                    -H "Authorization: Token $DD_API_KEY" \
-                    -F "scan_type=SonarQube Scan" \
-                    -F "engagement=$DD_ENGAGEMENT_ID" \
-                    -F "test_title=SonarQube - build $BUILD_NUMBER" \
-                    -F "active=true" \
-                    -F "verified=false" \
-                    -F "file=@$REPORTS_DIR/sonar_raw.json" || echo "WARNING: findings import failed"
-                else
-                  echo "WARNING: sonar_raw.json not found, skipping findings import"
-                fi
             '''
         }
     }
