@@ -149,6 +149,7 @@ pipeline {
                     apiCredentialsId: 'OpenCode',
                     approvalTimeoutSeconds: 1,
                     failOnAgentError: false,
+                    model: 'opencode/deepseek-v4.1-flash-free',
                     prompt: "Review this project and summarize it. Use the findings in ${env.REPORTS_DIR}/normalized_findings.json and ${env.REPORTS_DIR}/triage_batches.json as context.",
                     yoloMode: true
         }
