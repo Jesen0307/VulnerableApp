@@ -67,25 +67,30 @@ pipeline {
         always {
             echo 'Pipeline execution completed. Running AI review...'
 
-            // try/catch is not allowed directly in declarative post blocks, so it lives in script {}
-            script {
-                try {
-                    timeout(time: 5, unit: 'MINUTES') {
-                        aiAgent agent: openCode(),
-                                apiCredentialsId: 'OpenCode',
-                                approvalTimeoutSeconds: 1,
-                                failOnAgentError: false,
-                                model: 'opencode/deepseek-v4.1-flash-free',
-                                prompt: """Read security-review.md and follow it exactly.
+            // If the AI step fails, keep going so the Sonar import and uploads still run
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE', message: 'AI review did not finish') {
+                aiAgent agent: openCode(),
+                        apiCredentialsId: 'OpenCode',
+                        approvalTimeoutSeconds: 1,
+                        failOnAgentError: false,
+                        model: 'opencode/deepseek-v4.1-flash-free',
+                        prompt: """Read security-review.md and follow it exactly.
 Input: ${env.REPORTS_DIR}/sonar_raw.json.
-Output: write your review to ${env.REPORTS_DIR}/Agentreview.json using the output format in the playbook.
+
+Step 1: Write your full review to ${env.REPORTS_DIR}/Agentreview.json using the output format in the playbook.
 The file must contain only valid JSON, with no markdown, no code fences, and no text before or after it.
-Do not modify any other file. Work quickly and write the output file once.""",
-                                yoloMode: true
-                    }
-                } catch (err) {
-                    echo "AI review did not finish: ${err.message}"
-                }
+
+Step 2: After the file is written, your final reply must be a short human-readable summary.
+Build it from the summary of the pipeline you just wrote, and do not re-analyze anything or paste the JSON. Use exactly this layout:
+## Security Review
+**Verdict:** the verdict, followed by its rationale in one sentence
+**Summary:** 2 to 4 sentences
+**Key risks:** one bullet per risk
+**Recommended fixes:** one bullet per theme, in remediation order, one line each
+**What else is needed:** one bullet per item
+
+Keep the reply simple. Do not modify any other file.""",
+                        yoloMode: true
             }
 
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/Agentreview.json", allowEmptyArchive: true
@@ -122,6 +127,7 @@ Do not modify any other file. Work quickly and write the output file once.""",
                   echo "WARNING: engagement ID is empty, skipping file uploads"
                   exit 0
                 fi
+
                 for f in sonar_raw.json Agentreview.json; do
                   if [ -f "$REPORTS_DIR/$f" ]; then
                     echo "Uploading $f to DefectDojo engagement $DD_ENGAGEMENT_ID"
