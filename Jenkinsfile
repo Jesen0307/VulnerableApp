@@ -67,18 +67,26 @@ pipeline {
         always {
             echo 'Pipeline execution completed. Running AI review...'
 
-            aiAgent agent: openCode(),
-                    apiCredentialsId: 'OpenCode',
-                    approvalTimeoutSeconds: 1,
-                    failOnAgentError: false,
-                    model: 'opencode/deepseek-v4.1-flash-free',
-                    prompt: """Read security-review.md and follow it exactly.
+            // try/catch is not allowed directly in declarative post blocks, so it lives in script {}
+            script {
+                try {
+                    timeout(time: 5, unit: 'MINUTES') {
+                        aiAgent agent: openCode(),
+                                apiCredentialsId: 'OpenCode',
+                                approvalTimeoutSeconds: 1,
+                                failOnAgentError: false,
+                                model: 'opencode/deepseek-v4.1-flash-free',
+                                prompt: """Read security-review.md and follow it exactly.
 Input: ${env.REPORTS_DIR}/sonar_raw.json.
-Output: write your review to ${env.REPORTS_DIR}/Agentreview.json using the format of the playbook.
+Output: write your review to ${env.REPORTS_DIR}/Agentreview.json using the output format in the playbook.
 The file must contain only valid JSON, with no markdown, no code fences, and no text before or after it.
-Do not modify any other file. Work quickly and write the output file once.",
-                    yoloMode: true
-
+Do not modify any other file. Work quickly and write the output file once.""",
+                                yoloMode: true
+                    }
+                } catch (err) {
+                    echo "AI review did not finish: ${err.message}"
+                }
+            }
 
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/Agentreview.json", allowEmptyArchive: true
 
