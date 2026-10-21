@@ -8,7 +8,6 @@ pipeline {
         SONAR_TOKEN = credentials('sonar-token')
         SONAR_PROJECT_KEY = 'VulnerableApp'
 
-        // --- DefectDojo (POC: hardcoded, replace with Jenkins credentials later) ---
         DD_URL = 'http://defectdojo-nginx:8080'
         DD_API_KEY = credentials('DEFECTDOJO_API_KEY')
         DD_PRODUCT_TYPE = 'Research and Development'
@@ -73,17 +72,16 @@ pipeline {
                     approvalTimeoutSeconds: 1,
                     failOnAgentError: false,
                     model: 'opencode/deepseek-v4.1-flash-free',
-                    prompt: """Review this project and summarize it. Use the findings in ${env.REPORTS_DIR}/sonar_raw.json as context.
-Save your final review to the file ${env.REPORTS_DIR}/Agentreview.json.
-The file must contain only valid JSON (no markdown, no code fences) with these keys:
-"summary" (string), "key_risks" (array of strings), "recommendations" (array of strings).""",
+                    prompt: """Read security-review.md and follow it exactly.
+Input: ${env.REPORTS_DIR}/sonar_raw.json.
+Output: write your review to ${env.REPORTS_DIR}/Agentreview.json using the format of the playbook.
+The file must contain only valid JSON, with no markdown, no code fences, and no text before or after it.
+Do not modify any other file. Work quickly and write the output file once.",
                     yoloMode: true
 
-            // Save the AI review (and the Sonar report) as Jenkins build artifacts
+
             archiveArtifacts artifacts: "${env.REPORTS_DIR}/sonar_raw.json, ${env.REPORTS_DIR}/Agentreview.json", allowEmptyArchive: true
 
-            // 1) Import sonar_raw.json as findings. auto_create_context creates the
-            //    product / engagement automatically if they do not exist yet.
             sh '''
                 if [ -f "$REPORTS_DIR/sonar_raw.json" ]; then
                   curl -sS --fail-with-body -X POST "$DD_URL/api/v2/import-scan/" \
@@ -102,7 +100,6 @@ The file must contain only valid JSON (no markdown, no code fences) with these k
                 fi
             '''
 
-            // 2) The files endpoint needs the numeric engagement ID, so look it up by name
             script {
                 env.DD_ENGAGEMENT_ID = sh(returnStdout: true, script: '''
                     curl -sS -H "Authorization: Token $DD_API_KEY" \
@@ -112,7 +109,6 @@ The file must contain only valid JSON (no markdown, no code fences) with these k
                 echo "DefectDojo engagement '${env.DD_ENGAGEMENT_NAME}' resolved to ID '${env.DD_ENGAGEMENT_ID}'"
             }
 
-            // 3) Upload both files to the DefectDojo engagement
             sh '''
                 if [ -z "$DD_ENGAGEMENT_ID" ]; then
                   echo "WARNING: engagement ID is empty, skipping file uploads"
