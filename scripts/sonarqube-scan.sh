@@ -152,58 +152,87 @@ except Exception:
     sleep 10
 done
 
-# Export real findings so the downstream processor gets actual data instead of
-# an empty placeholder. Issues are the priority; hotspots are best-effort (the
-# scan token may not have the privilege to list them).
+# Export security findings in the NATIVE SonarQube API response structure (same
+# logic as sonarqube.groovy) so DefectDojo's "SonarQube Scan" parser can read it.
+# The parser needs the fields the API returns (status, type, tags, components,
+# rules, ...), so issues are NOT reduced to a handful of keys.
 if [ "$TASK_SUCCEEDED" = "1" ]; then
     echo "[sonarqube-scan] Fetching findings from SonarQube..."
     python3 - "$HOST_URL" "$TOKEN" "$PROJECT_KEY" "$OUTPUT_DIR/sonar_raw.json" <<'PYEOF'
+import base64
 import json
 import sys
+import urllib.error
 import urllib.request
 
 host, token, project_key, out_path = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
-page_size = 500
-result = {"issues": [], "hotspots": []}
+
+auth_header = "Basic " + base64.b64encode(f"{token}:".encode()).decode()
 
 
-def api_request(path):
-    url = f"{host}{path}"
-    req = urllib.request.Request(url)
-    req.add_header("Authorization", "Basic " + __import__("base64").b64encode(
-        f"{token}:".encode()).decode())
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return json.load(resp)
+def fetch_api(endpoint):
+    page = 1
+    page_size = 500
+    all_items = []
+    base_response = {}
+
+    while True:
+        url = f"{host}{endpoint}&ps={page_size}&p={page}"
+        req = urllib.request.Request(url)
+        req.add_header("Authorization", auth_header)
+
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                data = json.loads(resp.read().decode())
+        except urllib.error.HTTPError as e:
+            print(f"[sonarqube-scan] WARNING: API error {e.code} on {url}", file=sys.stderr)
+            break
+        except Exception as e:
+            print(f"[sonarqube-scan] WARNING: could not fetch {url}: {e}", file=sys.stderr)
+            break
+
+        if page == 1 and not base_response:
+            base_response = data
+
+        items = data.get("issues", [])
+        all_items.extend(items)
+
+        paging = data.get("paging", {})
+        total = paging.get("total", data.get("total", 0))
+
+        if not items or page * page_size >= total:
+            break
+        page += 1
+
+    return base_response, all_items
 
 
-# Issues (paged) - only security issues
-page = 1
-while True:
-    try:
-        data = api_request(
-            f"/api/issues/search?componentKeys={project_key}&impactSoftwareQualities=SECURITY&ps={page_size}&p={page}")
-    except Exception as e:
-        print(f"[sonarqube-scan] WARNING: could not fetch issues: {e}", file=sys.stderr)
-        break
-    issues = data.get("issues", [])
-    for i in issues:
-        result["issues"].append({
-            "key": i.get("key"),
-            "rule": i.get("rule"),
-            "component": i.get("component"),
-            "severity": i.get("severity"),
-            "message": i.get("message"),
-            "line": i.get("line"),
-            "textRange": i.get("textRange"),
-        })
-    total = data.get("total", 0)
-    if not issues or page * page_size >= total:
-        break
-    page += 1
+# Query 1: items with SECURITY software quality impact
+base_sq, issues_sq = fetch_api(
+    f"/api/issues/search?componentKeys={project_key}"
+    "&impactSoftwareQualities=SECURITY&statuses=OPEN,CONFIRMED,REOPENED"
+)
+
+# Query 2: items categorized under VULNERABILITY type
+base_vuln, issues_vuln = fetch_api(
+    f"/api/issues/search?componentKeys={project_key}"
+    "&types=VULNERABILITY&statuses=OPEN,CONFIRMED,REOPENED"
+)
+
+# Deduplicate by issue key
+dedup_map = {}
+for issue in issues_sq + issues_vuln:
+    dedup_map[issue["key"]] = issue
+final_issues = list(dedup_map.values())
+
+# Preserve the native API response structure required by the DefectDojo parser
+base_payload = base_sq or base_vuln or {}
+base_payload["issues"] = final_issues
+base_payload["total"] = len(final_issues)
 
 with open(out_path, "w") as f:
-    json.dump(result, f)
-print(f"[sonarqube-scan] Exported {len(result['issues'])} security issues to {out_path}")
+    json.dump(base_payload, f, indent=2)
+print(f"[sonarqube-scan] Exported {len(final_issues)} security issues to {out_path}")
 PYEOF
 else
     echo "[sonarqube-scan] Analysis did not complete; no findings exported." >&2
