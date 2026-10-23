@@ -1,20 +1,4 @@
 #!/usr/bin/env bash
-#
-# agent-review.sh - Quality gate untuk hasil AI review & SonarQube.
-#
-# Usage:
-#   ./scripts/agent-review.sh [REPORTS_DIR]
-#
-# Exit code (dipakai Jenkins untuk menentukan status build):
-#   0 = lolos
-#   1 = GAGAL (ada BLOCKER/CRITICAL, atau laporan tidak bisa dievaluasi)
-#
-# Environment (opsional):
-#   FAIL_ON_SEVERITIES  default "BLOCKER,CRITICAL"
-#   FAIL_ON_VERDICT     "true" untuk ikut gagal jika verdict = NOT_READY (default: false)
-#   CHECK_SONAR_RAW     "true" untuk cross-check sonar_raw.json (default: true)
-#   ON_REPORT_ERROR     "fail" (default) = build gagal jika Agentreview.json hilang/rusak
-#                       "warn" = hanya tampilkan peringatan, build tetap lolos
 
 set -u
 
@@ -28,7 +12,6 @@ export FAIL_ON_VERDICT="${FAIL_ON_VERDICT:-false}"
 export CHECK_SONAR_RAW="${CHECK_SONAR_RAW:-true}"
 ON_REPORT_ERROR="${ON_REPORT_ERROR:-fail}"
 
-# Dipanggil saat laporan tidak bisa dievaluasi
 report_error() {
   if [ "$ON_REPORT_ERROR" = "warn" ]; then
     echo "GATE: WARNING - laporan tidak bisa dievaluasi, gate dilewati (ON_REPORT_ERROR=warn)"
@@ -54,7 +37,6 @@ check_sonar  = os.environ["CHECK_SONAR_RAW"].lower() == "true"
 
 failed = False
 
-# --- 1. Agentreview.json (hasil AI) ---
 try:
     with open(review_file) as f:
         review = json.load(f)
@@ -76,7 +58,6 @@ if fail_verdict and verdict == "NOT_READY":
     print("GATE:   -> verdict NOT_READY")
     failed = True
 
-# --- 2. sonar_raw.json (data mentah, tidak bergantung pada AI) ---
 if check_sonar:
     if not os.path.isfile(sonar_file):
         print(f"GATE [sonar_raw.json]: file tidak ditemukan, cross-check dilewati")
@@ -108,7 +89,6 @@ sys.exit(0)
 PY
 rc=$?
 
-# rc: 0 = lolos, 1 = ada BLOCKER/CRITICAL, 2 = laporan tidak bisa dievaluasi
 if [ "$rc" -eq 2 ]; then
   report_error
 fi
