@@ -5,15 +5,16 @@
 # Usage:
 #   ./scripts/agent-review.sh [REPORTS_DIR]
 #
-# Exit code:
-#   0 = lolos (tidak ada BLOCKER/CRITICAL)
-#   1 = GAGAL (ada BLOCKER/CRITICAL)
-#   2 = laporan tidak bisa dievaluasi (file hilang / JSON tidak valid)
+# Exit code (dipakai Jenkins untuk menentukan status build):
+#   0 = lolos
+#   1 = GAGAL (ada BLOCKER/CRITICAL, atau laporan tidak bisa dievaluasi)
 #
 # Environment (opsional):
 #   FAIL_ON_SEVERITIES  default "BLOCKER,CRITICAL"
 #   FAIL_ON_VERDICT     "true" untuk ikut gagal jika verdict = NOT_READY (default: false)
 #   CHECK_SONAR_RAW     "true" untuk cross-check sonar_raw.json (default: true)
+#   ON_REPORT_ERROR     "fail" (default) = build gagal jika Agentreview.json hilang/rusak
+#                       "warn" = hanya tampilkan peringatan, build tetap lolos
 
 set -u
 
@@ -25,10 +26,21 @@ export REVIEW_FILE SONAR_FILE
 export FAIL_ON_SEVERITIES="${FAIL_ON_SEVERITIES:-BLOCKER,CRITICAL}"
 export FAIL_ON_VERDICT="${FAIL_ON_VERDICT:-false}"
 export CHECK_SONAR_RAW="${CHECK_SONAR_RAW:-true}"
+ON_REPORT_ERROR="${ON_REPORT_ERROR:-fail}"
+
+# Dipanggil saat laporan tidak bisa dievaluasi
+report_error() {
+  if [ "$ON_REPORT_ERROR" = "warn" ]; then
+    echo "GATE: WARNING - laporan tidak bisa dievaluasi, gate dilewati (ON_REPORT_ERROR=warn)"
+    exit 0
+  fi
+  echo "GATE: GAGAL - laporan tidak bisa dievaluasi (ON_REPORT_ERROR=fail)"
+  exit 1
+}
 
 if ! command -v python3 >/dev/null 2>&1; then
   echo "GATE: python3 tidak ditemukan"
-  exit 2
+  report_error
 fi
 
 python3 - <<'PY'
@@ -94,3 +106,10 @@ if failed:
 print("GATE: LOLOS")
 sys.exit(0)
 PY
+rc=$?
+
+# rc: 0 = lolos, 1 = ada BLOCKER/CRITICAL, 2 = laporan tidak bisa dievaluasi
+if [ "$rc" -eq 2 ]; then
+  report_error
+fi
+exit "$rc"
