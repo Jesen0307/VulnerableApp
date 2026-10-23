@@ -140,6 +140,9 @@ Keep the reply simple. Do not modify any other file.""",
                   fi
                 done
             '''
+
+            sh 'chmod +x scripts/agent-review.sh'
+            sh './scripts/agent-review.sh $REPORTS_DIR'
         }
     }
 }
