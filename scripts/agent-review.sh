@@ -34,17 +34,14 @@ sonar_file  = os.environ["SONAR_FILE"]
 fail_verdict = os.environ["FAIL_ON_VERDICT"].lower() == "true"
 check_sonar  = os.environ["CHECK_SONAR_RAW"].lower() == "true"
 
+# Skala MQR: INFO < LOW < MEDIUM < HIGH < BLOCKER
 RANK = {"INFO": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3, "BLOCKER": 4}
-LEGACY_TO_MQR = {"CRITICAL": "HIGH", "MAJOR": "MEDIUM", "MINOR": "LOW"}
-CLOSED = {"ACCEPTED", "FALSE_POSITIVE", "FIXED", "CLOSED", "RESOLVED"}
-
-def norm(s):
-    s = str(s).strip().upper()
-    return LEGACY_TO_MQR.get(s, s)
+# Status issue yang dianggap sudah selesai (issueStatus)
+CLOSED = {"ACCEPTED", "FALSE_POSITIVE", "FIXED"}
 
 fail_sevs = []
 for s in os.environ["FAIL_ON_SEVERITIES"].split(","):
-    s = norm(s)
+    s = s.strip().upper()
     if s and s in RANK and s not in fail_sevs:
         fail_sevs.append(s)
 
@@ -63,20 +60,11 @@ except Exception as e:
 
 sev = review.get("counts", {}).get("by_severity", {})
 verdict = review.get("overall_assessment", {}).get("verdict", "UNKNOWN")
-
-def review_count(s):
-    n = sev.get(s, 0)
-    if s not in sev:
-        for legacy, mqr in LEGACY_TO_MQR.items():
-            if mqr == s:
-                n += sev.get(legacy, 0)
-    return n
-
 print(f"GATE [Agentreview.json]: verdict={verdict} " +
-      " ".join(f"{k}={review_count(k)}" for k in fail_sevs))
+      " ".join(f"{k}={sev.get(k, 0)}" for k in fail_sevs))
 
 for s in fail_sevs:
-    n = review_count(s)
+    n = sev.get(s, 0)
     if n > 0:
         print(f"GATE:   -> {s} ditemukan: {n}")
         failed = True
@@ -86,18 +74,11 @@ if fail_verdict and verdict == "NOT_READY":
     failed = True
 
 def security_severity(issue):
-    """Severity dampak SECURITY (tertinggi). Fallback ke severity lama."""
-    impacts = issue.get("impacts")
-    if impacts:
-        sevs = [norm(i.get("severity", "")) for i in impacts
-                if str(i.get("softwareQuality", "")).upper() == "SECURITY"]
-        sevs = [s for s in sevs if s in RANK]
-        return max(sevs, key=RANK.get) if sevs else None
-
-    if str(issue.get("type", "")).upper() in {"VULNERABILITY", "SECURITY_HOTSPOT"}:
-        s = norm(issue.get("severity", ""))
-        return s if s in RANK else None
-    return None
+    """Severity tertinggi dari dampak SECURITY, atau None jika tidak ada."""
+    sevs = [str(i.get("severity", "")).upper() for i in issue.get("impacts", [])
+            if str(i.get("softwareQuality", "")).upper() == "SECURITY"]
+    sevs = [s for s in sevs if s in RANK]
+    return max(sevs, key=RANK.get) if sevs else None
 
 if check_sonar:
     if not os.path.isfile(sonar_file):
@@ -112,8 +93,7 @@ if check_sonar:
                 print(f"GATE [sonar_raw.json]: WARNING - data terpotong ({len(issues)} dari {total} issue)")
             counts = {s: 0 for s in fail_sevs}
             for i in issues:
-                status = str(i.get("issueStatus") or i.get("status") or "OPEN").upper()
-                if status in CLOSED:
+                if str(i.get("issueStatus", "OPEN")).upper() in CLOSED:
                     continue
                 s = security_severity(i)
                 if s in counts:
@@ -127,7 +107,7 @@ if check_sonar:
             print(f"GATE [sonar_raw.json]: gagal dibaca ({e}), cross-check dilewati")
 
 if failed:
-    print("GATE: GAGAL - ada finding BLOCKER atau HIGH")
+    print("GATE: GAGAL - ada finding yang melewati batas")
     sys.exit(1)
 
 print("GATE: LOLOS")
