@@ -66,7 +66,6 @@ verdict = review.get("overall_assessment", {}).get("verdict", "UNKNOWN")
 
 def review_count(s):
     n = sev.get(s, 0)
-    # Laporan lama masih memakai CRITICAL/MAJOR/MINOR
     if s not in sev:
         for legacy, mqr in LEGACY_TO_MQR.items():
             if mqr == s:
@@ -94,7 +93,7 @@ def security_severity(issue):
                 if str(i.get("softwareQuality", "")).upper() == "SECURITY"]
         sevs = [s for s in sevs if s in RANK]
         return max(sevs, key=RANK.get) if sevs else None
-    # Tanpa impacts: hanya hitung jika bertipe keamanan
+
     if str(issue.get("type", "")).upper() in {"VULNERABILITY", "SECURITY_HOTSPOT"}:
         s = norm(issue.get("severity", ""))
         return s if s in RANK else None
