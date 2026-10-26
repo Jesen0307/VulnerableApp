@@ -34,9 +34,7 @@ sonar_file  = os.environ["SONAR_FILE"]
 fail_verdict = os.environ["FAIL_ON_VERDICT"].lower() == "true"
 check_sonar  = os.environ["CHECK_SONAR_RAW"].lower() == "true"
 
-# Skala MQR: INFO < LOW < MEDIUM < HIGH < BLOCKER
 RANK = {"INFO": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3, "BLOCKER": 4}
-# Skala lama -> MQR (dipakai sebagai fallback dan untuk konfigurasi lama)
 LEGACY_TO_MQR = {"CRITICAL": "HIGH", "MAJOR": "MEDIUM", "MINOR": "LOW"}
 CLOSED = {"ACCEPTED", "FALSE_POSITIVE", "FIXED", "CLOSED", "RESOLVED"}
 
@@ -130,7 +128,7 @@ if check_sonar:
             print(f"GATE [sonar_raw.json]: gagal dibaca ({e}), cross-check dilewati")
 
 if failed:
-    print("GATE: GAGAL - ada finding yang melewati batas")
+    print("GATE: GAGAL - ada finding BLOCKER atau HIGH")
     sys.exit(1)
 
 print("GATE: LOLOS")
