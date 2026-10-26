@@ -107,7 +107,7 @@ if check_sonar:
             print(f"GATE [sonar_raw.json]: gagal dibaca ({e}), cross-check dilewati")
 
 if failed:
-    print("GATE: GAGAL - ada finding yang melewati batas")
+    print("GATE: GAGAL - ada finding dengan severity BLOCKER atau HIGH")
     sys.exit(1)
 
 print("GATE: LOLOS")
